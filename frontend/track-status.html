@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Grievance Status - NHAPOA | National Helpdesk for Prevention of Atrocities</title>
+  
+  <link rel="stylesheet" href="assets/nhapoa-layout.css">
+  <script src="saathi-service.js"></script>
+  <style>
+    /* Timeline styling for tracking page */
+    .nh-timeline {
+      position: relative;
+      padding-left: 32px;
+      margin: 28px 0;
+    }
+    .nh-timeline::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: #E5E7EB;
+    }
+    .nh-timeline-node {
+      position: relative;
+      margin-bottom: 24px;
+    }
+    .nh-timeline-node:last-child {
+      margin-bottom: 0;
+    }
+    .nh-timeline-dot {
+      position: absolute;
+      left: -32px;
+      top: 3px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 2px solid #D1D5DB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nh-timeline-node.done .nh-timeline-dot {
+      background: var(--nh-navy-primary);
+      border-color: var(--nh-navy-primary);
+      color: #FFFFFF;
+    }
+    .nh-timeline-node.current .nh-timeline-dot {
+      background: #FF671F;
+      border-color: #FF671F;
+      color: #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(255, 103, 31, 0.2);
+    }
+    .nh-timeline-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--nh-text-main);
+      margin-bottom: 2px;
+    }
+    .nh-timeline-date {
+      font-size: 12px;
+      color: var(--nh-text-muted);
+      margin-bottom: 4px;
+    }
+    .nh-timeline-desc {
+      font-size: 13px;
+      color: #4B5563;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. TOP GOV ACCESSIBILITY BAR
+       ========================================================================== -->
+  <header class="nh-gov-topbar">
+    <div class="nh-gov-topbar-inner">
+      <a href="https://india.gov.in" target="_blank" rel="noopener noreferrer" class="nh-gov-left">
+        <img src="assets/indian-flag.svg" alt="India Flag" class="nh-flag-img">
+        <span>Government of India
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:2px;">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </span>
+      </a>
+
+      <div class="nh-gov-right">
+        <a href="#main-content">Skip to Main Content</a>
+        <span class="nh-divider"></span>
+        <div class="nh-a11y-controls" role="group" aria-label="Text size controls">
+          <button type="button" class="nh-a11y-btn" onclick="changeFontSize(-1)" title="Decrease text size">A-</button>
+          <button type="button" class="nh-a11y-btn active" onclick="changeFontSize(0)" title="Default text size">A</button>
+          <button type="button" class="nh-a11y-btn" onclick="changeFontSize(1)" title="Increase text size">A+</button>
+        </div>
+        <span class="nh-divider"></span>
+        <button type="button" class="nh-a11y-btn" onclick="toggleContrast()" title="Toggle High Contrast">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"></path>
+          </svg>
+        </button>
+        <span class="nh-divider"></span>
+        <div style="display:flex; align-items:center; gap:4px; font-size:12.5px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <select style="background:transparent; color:#fff; border:none; font-size:12px; font-weight:600; cursor:pointer; outline:none;">
+            <option value="en" style="color:#000;">English</option>
+            <option value="hi" style="color:#000;">हिन्दी</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. MAIN HEADER (Emblem, Digital India, SAMAVESH, Admin Login)
+       ========================================================================== -->
+  <div class="nh-main-header">
+    <div class="nh-main-header-inner">
+      <div class="nh-brand-left">
+        <button type="button" class="nh-menu-btn" onclick="toggleSidebar()" aria-label="Toggle navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <a href="index.html" class="nh-emblem-wrap">
+          <img src="assets/emblem-header.svg" alt="Ashoka Emblem" class="nh-emblem-img">
+          <div class="nh-emblem-text">
+            <span class="nh-beta-tag">BETA</span>
+            <span class="nh-dept-govt">Government of India</span>
+            <span class="nh-dept-ministry">Ministry of Social Justice & Empowerment</span>
+            <span class="nh-dept-name">Department of Social Justice & Empowerment</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="nh-brand-right">
+        <!-- Digital India Official Logo SVG -->
+        <div style="display:flex; align-items:center; gap:8px;">
+          <svg width="34" height="40" viewBox="0 0 27 40" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 7.55928C5.10386 -0.756088 13.38 -1.60411 19.2769 1.42287C25.8177 4.78749 27.8357 12.5728 26.2064 19.427C24.5772 26.2813 19.9882 32.2037 13.9213 36.1738L12.4357 32.227C17.1596 29.1357 20.7324 24.5246 22.0007 19.1884C23.269 13.8523 21.6976 7.79093 16.5985 5.16781C12.0042 2.80806 5.56066 3.46824 1.58784 9.94065L0 7.55928Z" fill="#F37023"/>
+            <path d="M4.33008 19.544C8.42301 19.544 11.7411 16.2259 11.7411 12.133C11.7411 8.04006 8.42301 4.72198 4.33008 4.72198C2.56942 4.72198 0.95758 5.33405 -0.316895 6.36399L1.67027 9.53127C2.42858 8.91355 3.33777 8.54483 4.33008 8.54483C6.31174 8.54483 7.91924 10.1523 7.91924 12.134C7.91924 14.1157 6.31174 15.7232 4.33008 15.7232C3.33777 15.7232 2.42858 15.3545 1.67027 14.7368L-0.316895 17.9041C0.95758 18.934 2.56942 19.544 4.33008 19.544Z" fill="#0E6EB6"/>
+            <path d="M1.5 24.5L6.5 39.5H1.5L0 34.5L1.5 24.5Z" fill="#00A651"/>
+          </svg>
+          <div style="display:flex; flex-direction:column; line-height:1.1;">
+            <span style="font-family:'Noto Serif', Georgia, serif; font-size:15px; font-weight:900; font-style:italic; text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:2px;">Digital India</span>
+            <span style="font-size:8.5px; font-weight:700; letter-spacing:0.5px; color:#4B5563;">Power To Empower</span>
+          </div>
+        </div>
+
+        <img src="assets/samavesh-logo.svg" alt="SAMAVESH" class="nh-samavesh-logo">
+        <a href="operator-dashboard/index.html" class="nh-admin-login-btn">Admin Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       3. APP CONTAINER (Left Sidebar + Main Work Area)
+       ========================================================================== -->
+  <div class="nh-app-container">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="nh-sidebar" id="main-sidebar">
+      <div class="nh-sidebar-sambal" title="SAMBAL (NHAA 2.0)">
+        <img src="assets/sambal-logo.svg" alt="SAMBAL" class="nh-sambal-img">
+      </div>
+
+      <nav class="nh-sidebar-nav">
+        <!-- 1. Dashboard -->
+        <a href="index.html" class="nh-nav-item" title="Dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+          </svg>
+        </a>
+
+        <!-- 2. Register Grievance -->
+        <a href="register-grievance.html" class="nh-nav-item" title="Register Grievance">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <line x1="10" y1="9" x2="8" y2="9"></line>
+          </svg>
+        </a>
+
+        <!-- 3. Register Rescue -->
+        <a href="register-rescue.html" class="nh-nav-item" title="Register Rescue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="7" r="4"></circle>
+            <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path>
+            <path d="M18 8l3 3m0 0l-3 3m3-3h-6"></path>
+          </svg>
+        </a>
+
+        <!-- 4. Track Status (Active) -->
+        <a href="track-status.html" class="nh-nav-item active" title="Track Status">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <circle cx="11.5" cy="14.5" r="3"></circle>
+            <line x1="14" y1="17" x2="17" y2="20"></line>
+          </svg>
+        </a>
+
+        <!-- 5. Help / FAQs -->
+        <a href="#help" class="nh-nav-item" title="Help & FAQs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- MAIN VIEWPORT -->
+    <main class="nh-main-viewport" id="main-content">
+      <div class="nh-container-narrow">
+
+        <!-- SEARCH CARD -->
+        <section class="nh-card" style="margin-bottom: 24px;">
+          <div class="nh-card-header">
+            <h1 class="nh-card-title">Track Grievance Status</h1>
+            <p class="nh-card-subtitle">Enter your Docket Reference ID or registered Mobile Number to track the real-time progress of your grievance.</p>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="nh-radio-pills">
+              <label class="nh-radio-pill">
+                <input type="radio" name="searchType" value="ref" checked onchange="toggleSearchType('ref')">
+                <span>By Reference ID</span>
+              </label>
+              <label class="nh-radio-pill">
+                <input type="radio" name="searchType" value="mobile" onchange="toggleSearchType('mobile')">
+                <span>By Mobile Number</span>
+              </label>
+            </div>
+
+            <div style="display:flex; gap:12px; max-width:580px;">
+              <input type="text" id="queryInput" class="nh-input" placeholder="e.g. NHAA/2026/09/84920" value="NHAA/2026/09/84920">
+              <button type="button" class="nh-btn-continue" onclick="performLookup()" style="margin:0; white-space:nowrap;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <span>Track Status</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- TRACKING RESULT CARD -->
+        <section class="nh-card" id="tracking-result-card">
+          <!-- Case Header -->
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1px solid var(--nh-border); padding-bottom:18px; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+            <div>
+              <div style="font-size:12px; font-weight:700; text-transform:uppercase; color:var(--nh-text-muted);">Docket Reference ID</div>
+              <h2 id="res-docket-id" style="font-size:22px; font-weight:800; color:var(--nh-navy-primary); margin-top:2px;">NHAA/2026/09/84920</h2>
+              <div style="font-size:13px; color:#4B5563; margin-top:2px;">Lodged On: <span id="res-date">Sep 08, 2026 · 17:42 IST</span> · District: North West Delhi</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+              <span style="background:#E5EFF9; color:var(--nh-navy-primary); font-size:12.5px; font-weight:700; padding:5px 14px; border-radius:20px; border:1px solid #BFDBFE;">
+                Assigned to DSP & Welfare Officer
+              </span>
+              <span style="font-size:12px; color:#15803D; font-weight:600; display:flex; align-items:center; gap:4px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg> Priority Triage Synchronized
+              </span>
+            </div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="nh-section-divider">
+            <span class="nh-section-title">Case Progress Timeline</span>
+            <span class="nh-section-line"></span>
+          </div>
+
+          <div class="nh-timeline">
+            <!-- Node 1 -->
+            <div class="nh-timeline-node done">
+              <div class="nh-timeline-dot">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="nh-timeline-title">Grievance Registered Online</div>
+              <div class="nh-timeline-date">08 Sep 2026, 05:42 PM</div>
+              <div class="nh-timeline-desc">Complainant statement recorded. SAATHI initial distress assessment attached to docket.</div>
+            </div>
+
+            <!-- Node 2 -->
+            <div class="nh-timeline-node done">
+              <div class="nh-timeline-dot">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <div class="nh-timeline-title">Preliminary Scrutiny & Jurisdiction Verification</div>
+              <div class="nh-timeline-date">09 Sep 2026, 10:15 AM</div>
+              <div class="nh-timeline-desc">Verified under SC/ST (Prevention of Atrocities) Act Sections 3(1)(r), 3(1)(s). Forwarded to District Magistrate.</div>
+            </div>
+
+            <!-- Node 3 (Active) -->
+            <div class="nh-timeline-node current">
+              <div class="nh-timeline-dot">
+                <div style="width:8px; height:8px; border-radius:50%; background:#FFFFFF;"></div>
+              </div>
+              <div class="nh-timeline-title" style="color:#C2410C;">Assigned to Deputy Superintendent of Police (DSP) & Welfare Officer</div>
+              <div class="nh-timeline-date">09 Sep 2026, 02:30 PM (Current Stage)</div>
+              <div class="nh-timeline-desc">Designated Investigating Officer: <strong>Shri R.K. Sharma, DSP</strong>. Immediate field verification and witness recording underway.</div>
+            </div>
+
+            <!-- Node 4 -->
+            <div class="nh-timeline-node">
+              <div class="nh-timeline-dot"></div>
+              <div class="nh-timeline-title" style="color:#9CA3AF;">Field Enquiry & Witness Statements</div>
+              <div class="nh-timeline-date">Pending (Statutory 30-Day Window)</div>
+              <div class="nh-timeline-desc" style="color:#9CA3AF;">Police verification report submission to District Level Vigilance & Monitoring Committee.</div>
+            </div>
+
+            <!-- Node 5 -->
+            <div class="nh-timeline-node">
+              <div class="nh-timeline-dot"></div>
+              <div class="nh-timeline-title" style="color:#9CA3AF;">Relief Sanction & Charge Sheet Filing</div>
+              <div class="nh-timeline-date">Pending</div>
+              <div class="nh-timeline-desc" style="color:#9CA3AF;">Disbursement of economic relief under PoA Rules and submission of report before Special Court.</div>
+            </div>
+          </div>
+
+          <!-- ==========================================================================
+               EMBEDDED SAATHI CONTINUOUS SUPPORT CARE SECTION
+               ========================================================================== -->
+          <div class="saathi-impact-box" style="margin-top:32px;">
+            <div class="saathi-impact-header">
+              <div class="saathi-title-group">
+                <h3>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  Need Psychological or Legal Support While Case is Under Investigation?
+                </h3>
+                <p>Victims and witnesses are entitled to free mental health counseling and legal aid throughout the inquiry process.</p>
+              </div>
+              <span class="saathi-badge-tag">Active Assistance</span>
+            </div>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+              <!-- Tele-MANAS Card -->
+              <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:16px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                  <span style="background:#DCFCE7; color:#15803D; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px;">Mental Healthcare</span>
+                  <strong style="font-size:14px; color:#1E293B;">Tele-MANAS Support</strong>
+                </div>
+                <p style="font-size:12.5px; color:#475569; line-height:1.4; margin-bottom:10px;">Connect directly with a trained clinical psychologist for confidential stress, trauma, or insomnia care.</p>
+                <a href="tel:14416" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:var(--nh-navy-primary); text-decoration:none;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  <span>Dial 14416 (Toll-Free 24x7)</span>
+                </a>
+              </div>
+
+              <!-- DLSA Free Legal Aid -->
+              <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:16px;">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                  <span style="background:#FEF3C7; color:#92400E; font-size:11px; font-weight:700; padding:2px 8px; border-radius:4px;">Legal Representation</span>
+                  <strong style="font-size:14px; color:#1E293B;">DLSA Legal Assistance</strong>
+                </div>
+                <p style="font-size:12.5px; color:#475569; line-height:1.4; margin-bottom:10px;">Under the SC/ST Act, all victims are entitled to free state-appointed advocates for legal protection.</p>
+                <a href="tel:15100" style="display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:var(--nh-navy-primary); text-decoration:none;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  <span>Dial 15100 (National Legal Services)</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Appeal Rights -->
+          <div style="margin-top:24px; padding:16px; background:#F9FAFB; border:1px solid #E5E7EB; border-radius:8px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div>
+              <div style="font-size:13.5px; font-weight:700; color:#374151;">Unsatisfied with investigation pace?</div>
+              <div style="font-size:12.5px; color:#6B7280;">You have the statutory right to appeal directly to the State Level Monitoring Committee if no action is initiated within 30 days.</div>
+            </div>
+            <button type="button" class="nh-btn-back" onclick="alert('Appeal filing portal opens for dockets active over 30 days.')" style="margin:0;">
+              <span>File Statutory Appeal</span>
+            </button>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       4. UX4G OFFICIAL FOOTER
+       ========================================================================== -->
+  <footer class="nh-footer">
+    <div class="nh-footer-inner">
+      <p class="nh-footer-copy">© 2026 - Copyright UX4G. All rights reserved. Powered by NeGD | MeitY Government of India®2026 UX4G</p>
+      <div class="nh-footer-links">
+        <a href="#terms">Terms & Conditions</a>
+        <span class="nh-footer-divider"></span>
+        <a href="#privacy">Privacy Policy</a>
+        <span class="nh-footer-divider"></span>
+        <a href="#feedback">Feedback</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SAMAJIK SAHAYAK (Official Govt Floating Chatbot - Bottom Right) -->
+  <div class="nh-samajik-bot" title="Samajik Sahayak - Citizen Support Bot" onclick="alert('Samajik Sahayak: National Helpline 14566 is available 24x7.')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      <circle cx="9" cy="10" r="1" fill="#003366"></circle>
+      <circle cx="15" cy="10" r="1" fill="#003366"></circle>
+      <line x1="9" y1="13" x2="15" y2="13" stroke-width="1.5"></line>
+    </svg>
+  </div>
+
+  <script>
+    function toggleSearchType(t) {
+      const input = document.getElementById('queryInput');
+      if (t === 'mobile') {
+        input.placeholder = 'Enter 10-digit registered mobile number';
+        input.value = '9876543210';
+      } else {
+        input.placeholder = 'e.g. NHAA/2026/09/84920';
+        input.value = 'NHAA/2026/09/84920';
+      }
+    }
+
+    function performLookup() {
+      const q = document.getElementById('queryInput').value.trim();
+      if (!q) {
+        alert('Please enter a Docket ID or Mobile Number');
+        return;
+      }
+      document.getElementById('res-docket-id').textContent = q.toUpperCase();
+      document.getElementById('tracking-result-card').style.display = 'block';
+    }
+
+    let gFontScale = 0;
+    function changeFontSize(dir) {
+      if (dir === 0) gFontScale = 0;
+      else gFontScale += dir;
+      if (gFontScale > 2) gFontScale = 2;
+      if (gFontScale < -1) gFontScale = -1;
+      document.body.style.fontSize = (16 + gFontScale * 1.5) + 'px';
+    }
+
+    function toggleContrast() {
+      document.body.classList.toggle('high-contrast');
+    }
+
+    function toggleSidebar() {
+      const sb = document.getElementById('main-sidebar');
+      if (sb) {
+        sb.style.display = (sb.style.display === 'none') ? 'flex' : 'none';
+      }
+    }
+  </script>
+</body>
+</html>

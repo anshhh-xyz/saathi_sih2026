@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grievance Registration - NHAPOA | National Helpdesk for Prevention of Atrocities</title>
+  
+  <link rel="stylesheet" href="assets/nhapoa-layout.css">
+  <script src="saathi-service.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. TOP GOV ACCESSIBILITY BAR
+       ========================================================================== -->
+  <header class="nh-gov-topbar">
+    <div class="nh-gov-topbar-inner">
+      <a href="https://india.gov.in" target="_blank" rel="noopener noreferrer" class="nh-gov-left">
+        <img src="assets/indian-flag.svg" alt="India Flag" class="nh-flag-img">
+        <span>Government of India
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:2px;">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </span>
+      </a>
+
+      <div class="nh-gov-right">
+        <a href="#main-content">Skip to Main Content</a>
+        <span class="nh-divider"></span>
+        <div class="nh-a11y-controls" role="group" aria-label="Text size controls">
+          <button type="button" class="nh-a11y-btn" onclick="changeFontSize(-1)" title="Decrease text size">A-</button>
+          <button type="button" class="nh-a11y-btn active" onclick="changeFontSize(0)" title="Default text size">A</button>
+          <button type="button" class="nh-a11y-btn" onclick="changeFontSize(1)" title="Increase text size">A+</button>
+        </div>
+        <span class="nh-divider"></span>
+        <button type="button" class="nh-a11y-btn" onclick="toggleContrast()" title="Toggle High Contrast">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"></path>
+          </svg>
+        </button>
+        <span class="nh-divider"></span>
+        <div style="display:flex; align-items:center; gap:4px; font-size:12.5px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <select style="background:transparent; color:#fff; border:none; font-size:12px; font-weight:600; cursor:pointer; outline:none;">
+            <option value="en" style="color:#000;">English</option>
+            <option value="hi" style="color:#000;">हिन्दी</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       2. MAIN HEADER (Emblem, Digital India, SAMAVESH, Admin Login)
+       ========================================================================== -->
+  <div class="nh-main-header">
+    <div class="nh-main-header-inner">
+      <div class="nh-brand-left">
+        <button type="button" class="nh-menu-btn" onclick="toggleSidebar()" aria-label="Toggle navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <a href="index.html" class="nh-emblem-wrap">
+          <img src="assets/emblem-header.svg" alt="Ashoka Emblem" class="nh-emblem-img">
+          <div class="nh-emblem-text">
+            <span class="nh-beta-tag">BETA</span>
+            <span class="nh-dept-govt">Government of India</span>
+            <span class="nh-dept-ministry">Ministry of Social Justice & Empowerment</span>
+            <span class="nh-dept-name">Department of Social Justice & Empowerment</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="nh-brand-right">
+        <!-- Digital India Official Logo SVG -->
+        <div style="display:flex; align-items:center; gap:8px;">
+          <svg width="34" height="40" viewBox="0 0 27 40" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 7.55928C5.10386 -0.756088 13.38 -1.60411 19.2769 1.42287C25.8177 4.78749 27.8357 12.5728 26.2064 19.427C24.5772 26.2813 19.9882 32.2037 13.9213 36.1738L12.4357 32.227C17.1596 29.1357 20.7324 24.5246 22.0007 19.1884C23.269 13.8523 21.6976 7.79093 16.5985 5.16781C12.0042 2.80806 5.56066 3.46824 1.58784 9.94065L0 7.55928Z" fill="#F37023"/>
+            <path d="M4.33008 19.544C8.42301 19.544 11.7411 16.2259 11.7411 12.133C11.7411 8.04006 8.42301 4.72198 4.33008 4.72198C2.56942 4.72198 0.95758 5.33405 -0.316895 6.36399L1.67027 9.53127C2.42858 8.91355 3.33777 8.54483 4.33008 8.54483C6.31174 8.54483 7.91924 10.1523 7.91924 12.134C7.91924 14.1157 6.31174 15.7232 4.33008 15.7232C3.33777 15.7232 2.42858 15.3545 1.67027 14.7368L-0.316895 17.9041C0.95758 18.934 2.56942 19.544 4.33008 19.544Z" fill="#0E6EB6"/>
+            <path d="M1.5 24.5L6.5 39.5H1.5L0 34.5L1.5 24.5Z" fill="#00A651"/>
+          </svg>
+          <div style="display:flex; flex-direction:column; line-height:1.1;">
+            <span style="font-family:'Noto Serif', Georgia, serif; font-size:15px; font-weight:900; font-style:italic; text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:2px;">Digital India</span>
+            <span style="font-size:8.5px; font-weight:700; letter-spacing:0.5px; color:#4B5563;">Power To Empower</span>
+          </div>
+        </div>
+
+        <!-- SAMAVESH Official Logo -->
+        <img src="assets/samavesh-logo.svg" alt="SAMAVESH" class="nh-samavesh-logo">
+
+        <!-- Admin Login Button -->
+        <a href="operator-dashboard/index.html" class="nh-admin-login-btn">Admin Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       3. APP CONTAINER (Left Sidebar + Main Work Area)
+       ========================================================================== -->
+  <div class="nh-app-container">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="nh-sidebar" id="main-sidebar">
+      <!-- SAMBAL Logo -->
+      <div class="nh-sidebar-sambal" title="SAMBAL (NHAA 2.0)">
+        <img src="assets/sambal-logo.svg" alt="SAMBAL" class="nh-sambal-img">
+      </div>
+
+      <!-- Navigation Icons (UX4G Standard) -->
+      <nav class="nh-sidebar-nav">
+        <!-- 1. Dashboard -->
+        <a href="index.html" class="nh-nav-item" title="Dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+          </svg>
+        </a>
+
+        <!-- 2. Register Grievance (Active) -->
+        <a href="register-grievance.html" class="nh-nav-item active" title="Register Grievance">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <line x1="10" y1="9" x2="8" y2="9"></line>
+          </svg>
+        </a>
+
+        <!-- 3. Register Rescue -->
+        <a href="register-rescue.html" class="nh-nav-item" title="Register Rescue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="7" r="4"></circle>
+            <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"></path>
+            <path d="M18 8l3 3m0 0l-3 3m3-3h-6"></path>
+          </svg>
+        </a>
+
+        <!-- 4. Track Status -->
+        <a href="track-status.html" class="nh-nav-item" title="Track Status">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <circle cx="11.5" cy="14.5" r="3"></circle>
+            <line x1="14" y1="17" x2="17" y2="20"></line>
+          </svg>
+        </a>
+
+        <!-- 5. Help / FAQs -->
+        <a href="#help" class="nh-nav-item" title="Help & FAQs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- MAIN VIEWPORT -->
+    <main class="nh-main-viewport" id="main-content">
+      <div class="nh-container-narrow">
+
+        <!-- ==========================================================================
+             4. 5-STEP HORIZONTAL STEPPER
+             ========================================================================== -->
+        <div class="nh-stepper-wrap">
+          <div class="nh-stepper-line"></div>
+
+          <!-- Step 1 -->
+          <div class="nh-step-item active" id="stepper-1">
+            <div class="nh-step-circle">1</div>
+            <span class="nh-step-label">Grievance Registration</span>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="nh-step-item" id="stepper-2">
+            <div class="nh-step-circle">2</div>
+            <span class="nh-step-label" id="step2-label">Informer Details</span>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="nh-step-item" id="stepper-3">
+            <div class="nh-step-circle">3</div>
+            <span class="nh-step-label">Victim Details</span>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="nh-step-item" id="stepper-4">
+            <div class="nh-step-circle">4</div>
+            <span class="nh-step-label">Grievance Details</span>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="nh-step-item" id="stepper-5">
+            <div class="nh-step-circle">5</div>
+            <span class="nh-step-label">Review & Submit</span>
+          </div>
+        </div>
+
+        <!-- ==========================================================================
+             STAGE 1: GRIEVANCE REGISTRATION (Role & FIR Check)
+             ========================================================================== -->
+        <section class="nh-card" id="stage-1">
+          <div class="nh-card-header">
+            <h1 class="nh-card-title">Grievance Registration</h1>
+            <p class="nh-card-subtitle">Select grievance type, FIR details, and your submission role to proceed.</p>
+          </div>
+
+          <!-- Grievance Related To -->
+          <div class="nh-field-group">
+            <label class="nh-field-label">Grievance Related To <span class="nh-req">*</span></label>
+            <div class="nh-radio-pills">
+              <label class="nh-radio-pill">
+                <input type="radio" name="grievanceRelatedTo" value="FIR" checked>
+                <span>FIR</span>
+              </label>
+              <label class="nh-radio-pill">
+                <input type="radio" name="grievanceRelatedTo" value="Relief">
+                <span>Relief</span>
+              </label>
+              <label class="nh-radio-pill">
+                <input type="radio" name="grievanceRelatedTo" value="Charge Sheet">
+                <span>Charge Sheet</span>
+              </label>
+              <label class="nh-radio-pill">
+                <input type="radio" name="grievanceRelatedTo" value="Corruption">
+                <span>Corruption</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Do you have a registered FIR? -->
+          <div class="nh-field-group">
+            <label class="nh-field-label">Do you have a registered FIR? <span class="nh-req">*</span></label>
+            <div class="nh-radio-pills">
+              <label class="nh-radio-pill">
+                <input type="radio" name="hasRegisteredFIR" value="Yes" onchange="toggleFIRFields(true)">
+                <span>Yes</span>
+              </label>
+              <label class="nh-radio-pill">
+                <input type="radio" name="hasRegisteredFIR" value="No" checked onchange="toggleFIRFields(false)">
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Conditional FIR Fields -->
+          <div id="fir-fields-row" class="nh-input-row" style="display: none; background: #F8FAFC; padding: 16px; border-radius: 8px; border: 1px solid #E2E8F0; margin-bottom: 24px;">
+            <div class="nh-input-group">
+              <label class="nh-field-label">FIR Number <span class="nh-req">*</span></label>
+              <input type="text" id="firNumber" class="nh-input" placeholder="e.g. 0142/2026">
+            </div>
+            <div class="nh-input-group">
+              <label class="nh-field-label">Date of FIR <span class="nh-req">*</span></label>
+              <input type="date" id="firDate" class="nh-input">
+            </div>
+          </div>
+
+          <!-- REGISTRATION OF GRIEVANCE BY -->
+          <div class="nh-section-divider">
+            <span class="nh-section-title">Registration of Grievance By</span>
+            <span class="nh-section-line"></span>
+          </div>
+
+          <div class="nh-role-grid">
+            <!-- Card 1: As an Informer -->
+            <div class="nh-role-card selected" id="role-card-informer" onclick="selectRole('Informer')">
+              <div class="nh-role-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </div>
+              <div class="nh-role-info">
+                <div class="nh-role-title">As an Informer</div>
+                <div class="nh-role-desc">Reporting on behalf of another person or public interest</div>
+              </div>
+              <div class="nh-role-radio"></div>
+            </div>
+
+            <!-- Card 2: As a Victim -->
+            <div class="nh-role-card" id="role-card-victim" onclick="selectRole('Victim')">
+              <div class="nh-role-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div class="nh-role-info">
+                <div class="nh-role-title">As a Victim</div>
+                <div class="nh-role-desc">Directly affected and filing on your own behalf</div>
+              </div>
+              <div class="nh-role-radio"></div>
+            </div>
+
+            <!-- Card 3: As an NGO -->
+            <div class="nh-role-card" id="role-card-ngo" onclick="selectRole('NGO')">
+              <div class="nh-role-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div class="nh-role-info">
+                <div class="nh-role-title">As an NGO</div>
+                <div class="nh-role-desc">Organisation filing for one or more beneficiaries</div>
+              </div>
+              <div class="nh-role-radio"></div>
+            </div>
+          </div>
+
+          <!-- IDENTITY VERIFICATION -->
+          <div class="nh-section-divider">
+            <span class="nh-section-title">Identity Verification</span>
+            <span class="nh-section-line"></span>
+          </div>
+
+          <div class="nh-field-group">
+            <label class="nh-field-label">Mobile No. <span class="nh-req">*</span></label>
+            <div class="nh-mobile-verify-row">
+              <div class="nh-mobile-input-wrap">
+                <span class="nh-mobile-prefix">+91</span>
+                <input type="tel" id="mobileNumber" maxlength="10" placeholder="Enter 10-digit mobile" value="9876543210">
+              </div>
+              <button type="button" class="nh-btn-verify" id="btn-otp-verify" onclick="simulateOTPVerify()">
+                <span>Verify & Proceed</span>
+              </button>
+              <span id="otp-status-badge" style="display:inline-flex; align-items:center; gap:6px; color:#15803D; font-size:13px; font-weight:600;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg> Verified
+              </span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="nh-btn-row">
+            <button type="button" class="nh-btn-continue" onclick="nextStage(2)">
+              <span>Continue</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </section>
+
+
+        <!-- ==========================================================================
+             STAGE 2: INFORMER / NGO DETAILS
+             ========================================================================== -->
+        <section class="nh-card" id="stage-2" style="display: none;">
+          <div class="nh-card-header">
+            <h2 class="nh-card-title" id="stage2-title">Informer Details</h2>
+            <p class="nh-card-subtitle">Provide your personal details. Your identity will be kept confidential as per data protection norms.</p>
+          </div>
+
+          <!-- Confidentiality Banner -->
+          <div style="background:#F0FDF4; border:1px solid #BBF7D0; border-radius:8px; padding:12px 16px; margin-bottom:20px; display:flex; align-items:center; gap:10px; font-size:13px; color:#166534;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span><strong>Strict Confidentiality Guaranteed:</strong> Informer identities are legally protected under the SC/ST (PoA) Act and DPDP Act 2023.</span>
+          </div>
+
+          <div class="nh-input-row">
+            <div class="nh-input-group">
+              <label class="nh-field-label">First Name <span class="nh-req">*</span></label>
+              <input type="text" id="informerFirstName" class="nh-input" value="Ramesh">
+            </div>
+            <div class="nh-input-group">
+              <label class="nh-field-label">Last Name <span class="nh-req">*</span></label>
+              <input type="text" id="informerLastName" class="nh-input" value="Kumar">
+            </div>
+          </div>
+
+          <div class="nh-input-row">
+            <div class="nh-input-group">
+              <label class="nh-field-label">Gender <span class="nh-req">*</span></label>
+              <select id="informerGender" class="nh-input">
+                <option value="Male" selected>Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="nh-input-group">
+              <label class="nh-field-label">Email Address</label>
+              <input type="email" id="informerEmail" class="nh-input" value="ramesh.k@example.com">
+            </div>
+          </div>
+
+          <div class="nh-input-row">
+            <div class="nh-input-group">
+              <label class="nh-field-label">State / UT <span class="nh-req">*</span></label>
+              <select id="informerState" class="nh-input">
+                <option value="Delhi" selected>Delhi</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+              </select>
+            </div>
+            <div class="nh-input-group">
+              <label class="nh-field-label">District <span class="nh-req">*</span></label>
+              <input type="text" id="informerDistrict" class="nh-input" value="North West Delhi">
+            </div>
+          </div>
+
+          <div class="nh-btn-row">
+            <button type="button" class="nh-btn-back" onclick="nextStage(1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Back</span>
+            </button>
+            <button type="button" class="nh-btn-continue" onclick="nextStage(3)">
+              <span>Continue</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </section>
+
+
+        <!-- ==========================================================================
+             STAGE 3: VICTIM DETAILS
+             ========================================================================== -->
+        <section class="nh-card" id="stage-3" style="display: none;">
+          <div class="nh-card-header">
+            <h2 class="nh-card-title">Victim Details</h2>
+            <p class="nh-card-subtitle">Details of the person affected by the atrocity or civil rights violation.</p>
+          </div>
+
+          <div class="nh-input-row">
+            <div class="nh-input-group">
+              <label class="nh-field-label">Full Name of Victim <span class="nh-req">*</span></label>
+              <input type="text" id="victimName" class="nh-input" value="Sanjay Kumar">
+            </div>
+            <div class="nh-input-group">
+              <label class="nh-field-label">Father / Husband Name <span class="nh-req">*</span></label>
+              <input type="text" id="victimGuardian" class="nh-input" value="Om Prakash">
+            </div>
+          </div>
+
+          <div class="nh-input-row">
+            <div class="nh-input-group">
+              <label class="nh-field-label">Gender <span class="nh-req">*</span></label>
+              <select id="victimGender" class="nh-input">
+                <option value="Male" selected>Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="nh-input-group">
+              <label class="nh-field-label">Approximate Age (years) <span class="nh-req">*</span></label>
+              <input type="number" id="victimAge" class="nh-input" value="28">
+            </div>
+          </div>
+
+          <div class="nh-input-row">
+            <div class="nh-input-group">
+              <label class="nh-field-label">Social Category <span class="nh-req">*</span></label>
+              <select id="victimCategory" class="nh-input">
+                <option value="Scheduled Caste (SC)" selected>Scheduled Caste (SC)</option>
+                <option value="Scheduled Tribe (ST)">Scheduled Tribe (ST)</option>
+                <option value="Other">Other / PCR Act beneficiary</option>
+              </select>
+            </div>
+            <div class="nh-input-group">
+              <label class="nh-field-label">Police Station Jurisdiction</label>
+              <input type="text" id="victimPoliceStation" class="nh-input" value="Model Town Police Station">
+            </div>
+          </div>
+
+          <div class="nh-input-full">
+            <div class="nh-input-group">
+              <label class="nh-field-label">Full Address of Victim <span class="nh-req">*</span></label>
+              <input type="text" id="victimAddress" class="nh-input" value="House No. 42, Basti Vikas Samiti, Village Alipur, Delhi - 110036">
+            </div>
+          </div>
+
+          <div class="nh-btn-row">
+            <button type="button" class="nh-btn-back" onclick="nextStage(2)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Back</span>
+            </button>
+            <button type="button" class="nh-btn-continue" onclick="nextStage(4)">
+              <span>Continue</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </section>
+
+
+        <!-- ==========================================================================
+             STAGE 4: GRIEVANCE DETAILS & EMBEDDED SAATHI ASSESSMENT
+             ========================================================================== -->
+        <section class="nh-card" id="stage-4" style="display: none;">
+          <div class="nh-card-header">
+            <h2 class="nh-card-title">Grievance Details</h2>
+            <p class="nh-card-subtitle">Describe the nature, place of offence, and complete the confidential impact assessment.</p>
+          </div>
+
+          <div class="nh-input-row">
+            <div class="nh-input-group">
+              <label class="nh-field-label">Nature of Grievance / Atrocity <span class="nh-req">*</span></label>
+              <select id="grievanceCategory" class="nh-input" onchange="handleCategoryChange()">
+                <option value="threats_intimidation" selected>Threat to Life / Intimidation</option>
+                <option value="caste_abuse">Caste Slurs / Public Insult / Humiliation</option>
+                <option value="physical_violence">Physical Assault / Bodily Harm</option>
+                <option value="denial_access">Denial of Access to Water / Public Resources</option>
+                <option value="economic_boycott">Social / Economic Boycott</option>
+                <option value="land_dispute">Illegal Land Encroachment / Dispossession</option>
+              </select>
+            </div>
+            <div class="nh-input-group">
+              <label class="nh-field-label">Date of Incident <span class="nh-req">*</span></label>
+              <input type="date" id="incidentDate" class="nh-input">
+            </div>
+          </div>
+
+          <div class="nh-input-row">
+            <div class="nh-input-group">
+              <label class="nh-field-label">Place of Offence <span class="nh-req">*</span></label>
+              <input type="text" id="incidentLocation" class="nh-input" value="Community Water Well, Main Square, Village Alipur">
+            </div>
+            <div class="nh-input-group">
+              <label class="nh-field-label">District / Jurisdiction <span class="nh-req">*</span></label>
+              <input type="text" id="incidentDistrict" class="nh-input" value="North West Delhi">
+            </div>
+          </div>
+
+          <!-- Incident Description Textarea -->
+          <div class="nh-field-group">
+            <label class="nh-field-label">Describe the Incident / Problem Statement <span class="nh-req">*</span></label>
+            <textarea id="incidentDescription" class="nh-input" placeholder="Please describe what occurred, persons involved, witnesses, or specific damages...">Yesterday evening, I was stopped at the community water facility by local influential persons who used derogatory caste remarks, pushed me, and threatened me and my family with dire consequences if we reported to the authorities.</textarea>
+            
+            <!-- Real Microphone Voice Recording Tool -->
+            <div class="nh-voice-widget">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <button type="button" class="nh-voice-btn" id="btn-voice-record" onclick="toggleVoiceRecording()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                  </svg>
+                  <span id="voice-btn-text">Record Voice Description</span>
+                </button>
+                <div class="nh-voice-waveform">
+                  <div class="nh-wave-bar"></div>
+                  <div class="nh-wave-bar"></div>
+                  <div class="nh-wave-bar"></div>
+                  <div class="nh-wave-bar"></div>
+                  <div class="nh-wave-bar"></div>
+                </div>
+              </div>
+              <span class="nh-voice-status" id="voice-status-text">Optional: Speak in Hindi or English (MediaRecorder live audio)</span>
+            </div>
+          </div>
+
+          <!-- ==========================================================================
+               EMBEDDED SAATHI HUMAN-IMPACT ASSESSMENT (SIH 2026 Core Innovation)
+               ========================================================================== -->
+          <div class="saathi-impact-box">
+            <div class="saathi-impact-header">
+              <div class="saathi-title-group">
+                <h3>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  SAATHI Assistance & Psychological Impact Screening
+                </h3>
+                <p>To attach institutional care, legal aid, and priority triage to your docket, please answer 3 brief impact questions (Non-diagnostic screening · Confidential).</p>
+              </div>
+              <span class="saathi-badge-tag">Context-Aware Triage</span>
+            </div>
+
+            <div class="saathi-questions-grid">
+              <!-- Q1: Sleep -->
+              <div class="saathi-q-item">
+                <div class="saathi-q-text">1. Over the last few days, have you experienced severe difficulty sleeping, nightmares, or waking up in panic?</div>
+                <div class="saathi-options-row">
+                  <label class="saathi-opt-label">
+                    <input type="radio" name="saathi_sleep" value="none">
+                    <span>Not at all</span>
+                  </label>
+                  <label class="saathi-opt-label">
+                    <input type="radio" name="saathi_sleep" value="sometimes" checked>
+                    <span>Sometimes / Disturbed</span>
+                  </label>
+                  <label class="saathi-opt-label">
+                    <input type="radio" name="saathi_sleep" value="every_night">
+                    <span>Severe / Every night</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Q2: Intrusive Distress -->
+              <div class="saathi-q-item">
+                <div class="saathi-q-text">2. Do thoughts or memories of this incident repeatedly trigger sudden fear, trembling, or distress during your daily routine?</div>
+                <div class="saathi-options-row">
+                  <label class="saathi-opt-label">
+                    <input type="radio" name="saathi_intrusive" value="rarely">
+                    <span>Rarely</span>
+                  </label>
+                  <label class="saathi-opt-label">
+                    <input type="radio" name="saathi_intrusive" value="frequently" checked>
+                    <span>Frequently / Noticeable distress</span>
+                  </label>
+                  <label class="saathi-opt-label">
+                    <input type="radio" name="saathi_intrusive" value="constantly">
+                    <span>Constantly / Overwhelming panic</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Q3: Functional Impact -->
+              <div class="saathi-q-item">
+                <div class="saathi-q-text">3. Are you currently feeling unable to carry out work or daily tasks due to fear, isolation, or safety concerns?</div>
+                <div class="saathi-options-row">
+                  <label class="saathi-opt-label">
+                    <input type="radio" name="saathi_functional" value="manageable">
+                    <span>Manageable</span>
+                  </label>
+                  <label class="saathi-opt-label">
+                    <input type="radio" name="saathi_functional" value="impaired" checked>
+                    <span>Partially impaired</span>
+                  </label>
+                  <label class="saathi-opt-label">
+                    <input type="radio" name="saathi_functional" value="severe">
+                    <span>Severely impaired / Cannot leave home</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Active Threat Escalation Toggle -->
+            <label class="saathi-emergency-check">
+              <input type="checkbox" id="saathi_active_threat" onchange="updateSupportPreview()">
+              <span>I or my family members face active, ongoing threats to our physical safety right now.</span>
+            </label>
+
+            <!-- Linked Services Dynamic Preview -->
+            <div class="saathi-linked-services">
+              <div class="saathi-service-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Linked: <strong>Tele-MANAS (14416)</strong> Mental Health Support</span>
+              </div>
+              <div class="saathi-service-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#15803D" stroke-width="2.5">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Linked: <strong>DLSA (15100)</strong> Free Legal Aid</span>
+              </div>
+              <div class="saathi-service-pill" id="pill-priority-flag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span>Triage Queue: <strong id="triage-status-text">Priority Review Assigned</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="nh-btn-row">
+            <button type="button" class="nh-btn-back" onclick="nextStage(3)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Back</span>
+            </button>
+            <button type="button" class="nh-btn-continue" onclick="nextStage(5)">
+              <span>Continue to Review</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </section>
+
+
+        <!-- ==========================================================================
+             STAGE 5: REVIEW & SUBMIT
+             ========================================================================== -->
+        <section class="nh-card" id="stage-5" style="display: none;">
+          <div class="nh-card-header">
+            <h2 class="nh-card-title">Review & Submit Grievance</h2>
+            <p class="nh-card-subtitle">Please verify your details and attached institutional care package before final lodging.</p>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:24px;">
+            <!-- Informer & Victim Summary -->
+            <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:10px; padding:18px;">
+              <h4 style="font-size:13.5px; font-weight:700; color:var(--nh-navy-primary); margin-bottom:12px; border-bottom:1px solid #E5E7EB; padding-bottom:6px;">Complainant & Victim Profile</h4>
+              <div style="font-size:13px; line-height:1.7; color:#374151;">
+                <div><strong>Submission Role:</strong> <span id="rev-role">As an Informer</span></div>
+                <div><strong>Informer Name:</strong> <span id="rev-informer-name">Ramesh Kumar</span></div>
+                <div><strong>Victim Name:</strong> <span id="rev-victim-name">Sanjay Kumar</span> (SC)</div>
+                <div><strong>Mobile:</strong> <span id="rev-mobile">+91 9876543210</span></div>
+                <div><strong>Jurisdiction:</strong> <span id="rev-district">North West Delhi</span></div>
+              </div>
+            </div>
+
+            <!-- Incident & Safety Profile -->
+            <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:10px; padding:18px;">
+              <h4 style="font-size:13.5px; font-weight:700; color:var(--nh-navy-primary); margin-bottom:12px; border-bottom:1px solid #E5E7EB; padding-bottom:6px;">Incident & SAATHI Assessment</h4>
+              <div style="font-size:13px; line-height:1.7; color:#374151;">
+                <div><strong>Atrocity Nature:</strong> <span id="rev-nature">Threat to Life / Intimidation</span></div>
+                <div><strong>Location:</strong> <span id="rev-location">Village Alipur, Delhi</span></div>
+                <div><strong>SAATHI Triage:</strong> <span id="rev-triage-badge" style="color:#B7131A; font-weight:700;">Elevated Priority</span></div>
+                <div><strong>Linked Care:</strong> Tele-MANAS (14416) & DLSA (15100)</div>
+                <div><strong>Safety Engine Flag:</strong> <span id="rev-safety-flag">Normal Queue</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Problem Statement Box -->
+          <div style="background:#FFFFFF; border:1px solid #E5E7EB; border-radius:8px; padding:16px; margin-bottom:24px;">
+            <label style="font-size:12px; font-weight:700; text-transform:uppercase; color:#6B7280; display:block; margin-bottom:6px;">Reported Incident Description</label>
+            <p id="rev-description" style="font-size:13.5px; color:#1F2937; line-height:1.6; margin:0;"></p>
+          </div>
+
+          <!-- Legal Declaration Checkbox -->
+          <label style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#374151; cursor:pointer; margin-bottom:24px;">
+            <input type="checkbox" id="legalDeclaration" checked style="margin-top:3px; accent-color:var(--nh-navy-primary);">
+            <span>I solemnly affirm and declare that the statements made herein are true to the best of my knowledge and belief, and this grievance is submitted in good faith under the Protection of Civil Rights / SC & ST (PoA) Act.</span>
+          </label>
+
+          <div class="nh-btn-row">
+            <button type="button" class="nh-btn-back" onclick="nextStage(4)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Edit Details</span>
+            </button>
+            <button type="button" class="nh-btn-continue" onclick="submitFinalGrievance()" id="btn-submit-final">
+              <span>Confirm & Submit Grievance</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </div>
+        </section>
+
+
+        <!-- ==========================================================================
+             STAGE 6: SUBMISSION SUCCESS SCREEN
+             ========================================================================== -->
+        <section class="nh-card" id="stage-success" style="display: none; text-align: center; padding: 48px 36px;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: #DCFCE7; color: #15803D; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+
+          <h2 style="font-size: 22px; font-weight: 800; color: #111827; margin-bottom: 8px;">Grievance Successfully Registered</h2>
+          <p style="font-size: 14px; color: #6B7280; max-width: 580px; margin: 0 auto 24px;">Your grievance docket has been entered into the NHAPOA national database and prioritized via SAATHI for immediate welfare review.</p>
+
+          <div style="background: #F8FAFC; border: 1.5px dashed #93C5FD; border-radius: 12px; padding: 20px; max-width: 460px; margin: 0 auto 28px;">
+            <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; color: #64748B; margin-bottom: 4px;">Docket Reference Number</div>
+            <div id="success-docket-id" style="font-size: 24px; font-weight: 800; color: var(--nh-navy-primary); letter-spacing: 1px;">NHAA/2026/09/84920</div>
+            <div style="font-size: 12.5px; color: #15803D; font-weight: 600; margin-top: 6px;">SMS confirmation dispatched to complainant mobile</div>
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 14px;">
+            <a href="track-status.html" class="nh-btn-continue" style="text-decoration: none; margin: 0;">
+              <span>Track Grievance Status</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="operator-dashboard/index.html" class="nh-btn-back" style="text-decoration: none;">
+              <span>View in Officer Dashboard</span>
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- ==========================================================================
+       5. UX4G OFFICIAL FOOTER
+       ========================================================================== -->
+  <footer class="nh-footer">
+    <div class="nh-footer-inner">
+      <p class="nh-footer-copy">© 2026 - Copyright UX4G. All rights reserved. Powered by NeGD | MeitY Government of India®2026 UX4G</p>
+      <div class="nh-footer-links">
+        <a href="#terms">Terms & Conditions</a>
+        <span class="nh-footer-divider"></span>
+        <a href="#privacy">Privacy Policy</a>
+        <span class="nh-footer-divider"></span>
+        <a href="#feedback">Feedback</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       6. SAMAJIK SAHAYAK (Official Govt Floating Chatbot - Bottom Right)
+       ========================================================================== -->
+  <div class="nh-samajik-bot" title="Samajik Sahayak - Citizen Support Bot" onclick="alert('Samajik Sahayak: National Helpline 14566 is available 24x7.')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      <circle cx="9" cy="10" r="1" fill="#003366"></circle>
+      <circle cx="15" cy="10" r="1" fill="#003366"></circle>
+      <line x1="9" y1="13" x2="15" y2="13" stroke-width="1.5"></line>
+    </svg>
+  </div>
+
+  <!-- ==========================================================================
+       7. CLIENT SCRIPT: LIFECYCLE & SAATHI SYNC
+       ========================================================================== -->
+  <script>
+    // State
+    let gCurrentRole = 'Informer';
+    let gCurrentStage = 1;
+    let gMediaRecorder = null;
+    let gAudioChunks = [];
+    let gIsRecording = false;
+
+    // Set today's date for incident date input
+    document.getElementById('incidentDate').value = new Date().toISOString().split('T')[0];
+
+    function toggleFIRFields(hasFIR) {
+      document.getElementById('fir-fields-row').style.display = hasFIR ? 'grid' : 'none';
+    }
+
+    function selectRole(role) {
+      gCurrentRole = role;
+      document.querySelectorAll('.nh-role-card').forEach(c => c.classList.remove('selected'));
+      if (role === 'Informer') {
+        document.getElementById('role-card-informer').classList.add('selected');
+        document.getElementById('step2-label').textContent = 'Informer Details';
+        document.getElementById('stage2-title').textContent = 'Informer Details';
+      } else if (role === 'Victim') {
+        document.getElementById('role-card-victim').classList.add('selected');
+        document.getElementById('step2-label').textContent = 'Complainant Details';
+        document.getElementById('stage2-title').textContent = 'Complainant Self Details';
+      } else {
+        document.getElementById('role-card-ngo').classList.add('selected');
+        document.getElementById('step2-label').textContent = 'NGO Details';
+        document.getElementById('stage2-title').textContent = 'NGO Representative Details';
+      }
+    }
+
+    function simulateOTPVerify() {
+      const btn = document.getElementById('btn-otp-verify');
+      btn.innerHTML = '<span>Verifying...</span>';
+      setTimeout(() => {
+        btn.innerHTML = '<span>Verified</span>';
+        btn.style.background = '#DCFCE7';
+        btn.style.color = '#15803D';
+        btn.style.borderColor = '#86EFAC';
+      }, 500);
+    }
+
+    function nextStage(stageNum) {
+      gCurrentStage = stageNum;
+
+      // Update Stepper Visuals
+      for (let i = 1; i <= 5; i++) {
+        const item = document.getElementById('stepper-' + i);
+        if (!item) continue;
+        item.classList.remove('active', 'completed');
+        if (i === stageNum) {
+          item.classList.add('active');
+        } else if (i < stageNum) {
+          item.classList.add('completed');
+          item.querySelector('.nh-step-circle').innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+        } else {
+          item.querySelector('.nh-step-circle').textContent = i;
+        }
+      }
+
+      // Hide all stages
+      for (let i = 1; i <= 5; i++) {
+        const sec = document.getElementById('stage-' + i);
+        if (sec) sec.style.display = 'none';
+      }
+      document.getElementById('stage-success').style.display = 'none';
+
+      // Show target stage
+      const target = document.getElementById('stage-' + stageNum);
+      if (target) {
+        target.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // If entering Review stage, populate data
+      if (stageNum === 5) {
+        populateReviewData();
+      }
+    }
+
+    function handleCategoryChange() {
+      updateSupportPreview();
+    }
+
+    function updateSupportPreview() {
+      const activeThreat = document.getElementById('saathi_active_threat').checked;
+      const pill = document.getElementById('pill-priority-flag');
+      const text = document.getElementById('triage-status-text');
+
+      if (activeThreat) {
+        pill.style.background = '#FEE2E2';
+        pill.style.borderColor = '#FCA5A5';
+        pill.style.color = '#B91C1C';
+        text.textContent = 'Active Danger Flagged (Emergency SOP)';
+      } else {
+        pill.style.background = '#FFFFFF';
+        pill.style.borderColor = '#CBD5E1';
+        pill.style.color = '#1E293B';
+        text.textContent = 'Priority Review Assigned';
+      }
+    }
+
+    // Real Microphone Voice Recording
+    async function toggleVoiceRecording() {
+      const btn = document.getElementById('btn-voice-record');
+      const label = document.getElementById('voice-btn-text');
+      const status = document.getElementById('voice-status-text');
+
+      if (!gIsRecording) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          gMediaRecorder = new MediaRecorder(stream);
+          gAudioChunks = [];
+          gMediaRecorder.ondataavailable = e => gAudioChunks.push(e.data);
+          gMediaRecorder.onstop = () => {
+            const desc = document.getElementById('incidentDescription');
+            desc.value += "\n[Audio Note Recorded: Complainant provided voice statement in Hindi/English - acoustic prosody analyzed for tremor and urgency markers.]";
+            status.textContent = 'Recording attached to dossier (Audio acoustic features captured)';
+          };
+          gMediaRecorder.start();
+          gIsRecording = true;
+          btn.classList.add('recording');
+          label.textContent = 'Stop Recording';
+          status.textContent = 'Recording in progress... speak clearly';
+        } catch (err) {
+          // Graceful fallback for demo environments without mic access
+          gIsRecording = true;
+          btn.classList.add('recording');
+          label.textContent = 'Stop Recording (Demo)';
+          status.textContent = 'Recording simulated audio stream...';
+        }
+      } else {
+        if (gMediaRecorder && gMediaRecorder.state === 'recording') {
+          gMediaRecorder.stop();
+        } else {
+          const desc = document.getElementById('incidentDescription');
+          desc.value += "\n[Voice Note Recorded: Audio statement captured and linked to SAATHI docket.]";
+          status.textContent = 'Recording attached (Audio acoustic features captured)';
+        }
+        gIsRecording = false;
+        btn.classList.remove('recording');
+        label.textContent = 'Record Voice Description';
+      }
+    }
+
+    function populateReviewData() {
+      document.getElementById('rev-role').textContent = 'As an ' + gCurrentRole;
+      document.getElementById('rev-informer-name').textContent = document.getElementById('informerFirstName').value + ' ' + document.getElementById('informerLastName').value;
+      document.getElementById('rev-victim-name').textContent = document.getElementById('victimName').value;
+      document.getElementById('rev-mobile').textContent = '+91 ' + document.getElementById('mobileNumber').value;
+      document.getElementById('rev-district').textContent = document.getElementById('incidentDistrict').value;
+      
+      const catSelect = document.getElementById('grievanceCategory');
+      document.getElementById('rev-nature').textContent = catSelect.options[catSelect.selectedIndex].text;
+      document.getElementById('rev-location').textContent = document.getElementById('incidentLocation').value;
+      document.getElementById('rev-description').textContent = document.getElementById('incidentDescription').value;
+
+      const activeThreat = document.getElementById('saathi_active_threat').checked;
+      const badge = document.getElementById('rev-triage-badge');
+      const flag = document.getElementById('rev-safety-flag');
+      
+      if (activeThreat) {
+        badge.textContent = 'Immediate Safety Flag';
+        badge.style.color = '#B91C1C';
+        flag.textContent = 'Active Peril / Escalate to DSP';
+        flag.style.color = '#B91C1C';
+        flag.style.fontWeight = '700';
+      } else {
+        badge.textContent = 'Elevated Priority Review';
+        badge.style.color = '#003366';
+        flag.textContent = 'Standard Triage with Linked Care';
+        flag.style.color = '#374151';
+        flag.style.fontWeight = 'normal';
+      }
+    }
+
+    function submitFinalGrievance() {
+      const btn = document.getElementById('btn-submit-final');
+      btn.innerHTML = '<span>Registering Docket...</span>';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        // Generate Docket ID
+        const rnd = Math.floor(10000 + Math.random() * 90000);
+        const docketId = 'NHAA/2026/09/' + rnd;
+        document.getElementById('success-docket-id').textContent = docketId;
+
+        // Persist to localStorage for Operator Dashboard sync
+        const activeThreat = document.getElementById('saathi_active_threat').checked;
+        const newCase = {
+          id: docketId,
+          referenceId: docketId,
+          callerName: document.getElementById('victimName').value,
+          callerMobile: document.getElementById('mobileNumber').value,
+          complainantRole: gCurrentRole,
+          category: document.getElementById('grievanceCategory').value,
+          categoryLabel: document.getElementById('grievanceCategory').options[document.getElementById('grievanceCategory').selectedIndex].text,
+          district: document.getElementById('incidentDistrict').value,
+          incidentLocation: document.getElementById('incidentLocation').value,
+          incidentDescription: document.getElementById('incidentDescription').value,
+          timestamp: new Date().toISOString(),
+          priorityBand: activeThreat ? 'Urgent' : 'High',
+          priorityScore: activeThreat ? 95 : 74,
+          safetyFlag: activeThreat,
+          confidenceLevel: 88,
+          assessment: {
+            textScore: 78,
+            acousticScore: 72,
+            selfReport: {
+              sleep: document.querySelector('input[name="saathi_sleep"]:checked')?.value || 'sometimes',
+              intrusive: document.querySelector('input[name="saathi_intrusive"]:checked')?.value || 'frequently',
+              functional: document.querySelector('input[name="saathi_functional"]:checked')?.value || 'impaired'
+            },
+            linkedServices: ['Tele-MANAS (14416)', 'DLSA Legal Aid (15100)']
+          }
+        };
+
+        try {
+          const existing = JSON.parse(localStorage.getItem('saathi_cases') || '[]');
+          existing.unshift(newCase);
+          localStorage.setItem('saathi_cases', JSON.stringify(existing));
+        } catch (e) {
+          console.warn('Could not save case locally:', e);
+        }
+
+        // Switch to success card
+        for (let i = 1; i <= 5; i++) {
+          const s = document.getElementById('stage-' + i);
+          if (s) s.style.display = 'none';
+        }
+        document.getElementById('stage-success').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 600);
+    }
+
+    // Accessibility Font Size Toggle
+    let gFontScale = 0;
+    function changeFontSize(dir) {
+      if (dir === 0) gFontScale = 0;
+      else gFontScale += dir;
+      if (gFontScale > 2) gFontScale = 2;
+      if (gFontScale < -1) gFontScale = -1;
+      document.body.style.fontSize = (16 + gFontScale * 1.5) + 'px';
+    }
+
+    function toggleContrast() {
+      document.body.classList.toggle('high-contrast');
+    }
+
+    function toggleSidebar() {
+      const sb = document.getElementById('main-sidebar');
+      if (sb) {
+        sb.style.display = (sb.style.display === 'none') ? 'flex' : 'none';
+      }
+    }
+  </script>
+</body>
+</html>

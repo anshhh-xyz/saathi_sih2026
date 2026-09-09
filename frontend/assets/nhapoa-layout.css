@@ -1,0 +1,1104 @@
+/* ==========================================================================
+   NHAPOA & SAATHI Official Government UX4G Layout Stylesheet
+   Replicated 1:1 from nhapoa.dosje.gov.in for Smart India Hackathon 2026
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@400;500;600;700&display=swap');
+
+:root {
+  --nh-navy-primary: #003366;
+  --nh-navy-dark: #002244;
+  --nh-navy-hover: #00274D;
+  --nh-blue-light: #E5EFF9;
+  --nh-blue-border: #9CBFE3;
+  --nh-text-main: #1F2937;
+  --nh-text-secondary: #374151;
+  --nh-text-muted: #6B7280;
+  --nh-border: #E5E7EB;
+  --nh-border-focus: #003366;
+  --nh-bg-page: #F9FAFB;
+  --nh-card-bg: #FFFFFF;
+  --nh-accent-orange: #FF671F;
+  --nh-accent-green: #15803D;
+  --nh-accent-red: #B7131A;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--nh-bg-page);
+  color: var(--nh-text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   1. TOP ACCESSIBILITY & GOV BAR
+   ========================================================================== */
+.nh-gov-topbar {
+  background-color: var(--nh-navy-primary);
+  color: #FFFFFF;
+  font-size: 12.5px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+.nh-gov-topbar-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 6px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nh-gov-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.nh-flag-img {
+  width: 26px;
+  height: 17px;
+  border-radius: 2px;
+  object-fit: cover;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+.nh-gov-left span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nh-gov-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nh-gov-right a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 12.5px;
+}
+
+.nh-gov-right a:hover {
+  text-decoration: underline;
+}
+
+.nh-divider {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.nh-a11y-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nh-a11y-btn {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.nh-a11y-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nh-a11y-btn.active {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ==========================================================================
+   2. MAIN HEADER (Emblem, Digital India, SAMAVESH, Admin Login)
+   ========================================================================== */
+.nh-main-header {
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--nh-border);
+  width: 100%;
+}
+
+.nh-main-header-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.nh-brand-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nh-menu-btn {
+  background: transparent;
+  border: 1px solid var(--nh-border);
+  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--nh-text-secondary);
+  transition: all 0.2s;
+}
+
+.nh-menu-btn:hover {
+  background: var(--nh-bg-page);
+  border-color: #D1D5DB;
+}
+
+.nh-emblem-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nh-emblem-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nh-emblem-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.nh-beta-tag {
+  display: inline-block;
+  background-color: #FBBF24;
+  color: #78350F;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 4px;
+  width: fit-content;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+}
+
+.nh-dept-govt {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--nh-text-muted);
+  line-height: 1.2;
+}
+
+.nh-dept-ministry {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--nh-text-secondary);
+  line-height: 1.2;
+}
+
+.nh-dept-name {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--nh-navy-primary);
+  line-height: 1.2;
+}
+
+.nh-brand-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nh-digital-india-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nh-samavesh-logo {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nh-admin-login-btn {
+  background-color: var(--nh-navy-primary);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.nh-admin-login-btn:hover {
+  background-color: var(--nh-navy-hover);
+}
+
+/* ==========================================================================
+   3. APP LAYOUT: SIDEBAR + MAIN WORKSPACE
+   ========================================================================== */
+.nh-app-container {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+/* LEFT SIDEBAR */
+.nh-sidebar {
+  width: 80px;
+  background: #FFFFFF;
+  border-right: 1px solid var(--nh-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
+  flex-shrink: 0;
+}
+
+.nh-sidebar-sambal {
+  margin-bottom: 20px;
+  padding: 6px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255, 103, 31, 0.08) 0%, rgba(255, 103, 31, 0) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nh-sambal-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.nh-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  align-items: center;
+}
+
+.nh-nav-item {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--nh-text-secondary);
+  text-decoration: none;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.nh-nav-item:hover {
+  background-color: var(--nh-bg-page);
+  color: var(--nh-navy-primary);
+}
+
+.nh-nav-item.active {
+  background-color: var(--nh-blue-light);
+  color: var(--nh-navy-primary);
+}
+
+.nh-nav-item svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* MAIN CONTENT AREA */
+.nh-main-viewport {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 36px 64px 36px;
+}
+
+.nh-container-narrow {
+  max-width: 1060px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   4. 5-STEP STEPPER (UX4G Standard)
+   ========================================================================== */
+.nh-stepper-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.nh-step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  text-decoration: none;
+}
+
+.nh-step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1.5px solid #D1D5DB;
+  color: #6B7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13.5px;
+  font-weight: 700;
+  transition: all 0.25s;
+}
+
+.nh-step-label {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--nh-text-muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.nh-step-item.active .nh-step-circle {
+  background: var(--nh-navy-primary);
+  border-color: var(--nh-navy-primary);
+  color: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(0, 51, 102, 0.15);
+}
+
+.nh-step-item.active .nh-step-label {
+  color: var(--nh-navy-primary);
+  font-weight: 700;
+}
+
+.nh-step-item.completed .nh-step-circle {
+  background: var(--nh-navy-primary);
+  border-color: var(--nh-navy-primary);
+  color: #FFFFFF;
+}
+
+.nh-step-item.completed .nh-step-label {
+  color: var(--nh-navy-primary);
+  font-weight: 600;
+}
+
+.nh-stepper-line {
+  position: absolute;
+  top: 16px;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: #E5E7EB;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   5. WHITE FORM CARDS (Replicated from nhapoa.dosje.gov.in)
+   ========================================================================== */
+.nh-card {
+  background: var(--nh-card-bg);
+  border: 1px solid var(--nh-border);
+  border-radius: 16px;
+  padding: 32px 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.nh-card-header {
+  margin-bottom: 24px;
+}
+
+.nh-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--nh-text-main);
+  margin-bottom: 6px;
+}
+
+.nh-card-subtitle {
+  font-size: 13.5px;
+  color: var(--nh-text-muted);
+}
+
+.nh-field-group {
+  margin-bottom: 24px;
+}
+
+.nh-field-label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--nh-text-secondary);
+  margin-bottom: 10px;
+}
+
+.nh-req {
+  color: var(--nh-accent-red);
+  font-weight: 700;
+}
+
+/* Radio Pill Group (e.g. FIR, Relief, Charge Sheet, Corruption) */
+.nh-radio-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.nh-radio-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--nh-text-secondary);
+  user-select: none;
+}
+
+.nh-radio-pill input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #9CA3AF;
+  border-radius: 50%;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+  display: grid;
+  place-content: center;
+  transition: border-color 0.2s;
+}
+
+.nh-radio-pill input[type="radio"]::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  background-color: var(--nh-navy-primary);
+}
+
+.nh-radio-pill input[type="radio"]:checked {
+  border-color: var(--nh-navy-primary);
+}
+
+.nh-radio-pill input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+/* SECTION DIVIDERS WITH CAPTION */
+.nh-section-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px 0 16px 0;
+}
+
+.nh-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--nh-text-muted);
+  white-space: nowrap;
+}
+
+.nh-section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--nh-border);
+}
+
+/* ROLE SELECTION CARDS (Informer / Victim / NGO) */
+.nh-role-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .nh-role-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.nh-role-card {
+  border: 1.5px solid var(--nh-border);
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #FFFFFF;
+}
+
+.nh-role-card:hover {
+  border-color: var(--nh-navy-primary);
+  background: #FDFEFE;
+}
+
+.nh-role-card.selected {
+  border-color: var(--nh-navy-primary);
+  background-color: #F4F8FC;
+  box-shadow: 0 0 0 1px var(--nh-navy-primary);
+}
+
+.nh-role-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: #EBF3FA;
+  color: var(--nh-navy-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nh-role-card.selected .nh-role-icon-box {
+  background: var(--nh-navy-primary);
+  color: #FFFFFF;
+}
+
+.nh-role-info {
+  flex: 1;
+}
+
+.nh-role-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--nh-text-main);
+  margin-bottom: 3px;
+}
+
+.nh-role-desc {
+  font-size: 12px;
+  color: var(--nh-text-muted);
+  line-height: 1.4;
+}
+
+.nh-role-radio {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #D1D5DB;
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.nh-role-card.selected .nh-role-radio {
+  border-color: var(--nh-navy-primary);
+}
+
+.nh-role-card.selected .nh-role-radio::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--nh-navy-primary);
+}
+
+/* FORM INPUTS & CONTROLS */
+.nh-input-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.nh-input-full {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.nh-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.nh-input {
+  width: 100%;
+  height: 42px;
+  border: 1px solid var(--nh-border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--nh-text-main);
+  background: #FFFFFF;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.nh-input:focus {
+  outline: none;
+  border-color: var(--nh-navy-primary);
+  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+}
+
+textarea.nh-input {
+  height: auto;
+  min-height: 110px;
+  resize: vertical;
+}
+
+select.nh-input {
+  cursor: pointer;
+}
+
+/* MOBILE VERIFICATION ROW */
+.nh-mobile-verify-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nh-mobile-input-wrap {
+  display: flex;
+  border: 1px solid var(--nh-border);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 42px;
+  flex: 1;
+  max-width: 320px;
+}
+
+.nh-mobile-input-wrap:focus-within {
+  border-color: var(--nh-navy-primary);
+  box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+}
+
+.nh-mobile-prefix {
+  background: #F3F4F6;
+  color: #4B5563;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-right: 1px solid var(--nh-border);
+}
+
+.nh-mobile-input-wrap input {
+  border: none;
+  outline: none;
+  padding: 0 12px;
+  font-size: 14px;
+  flex: 1;
+}
+
+.nh-btn-verify {
+  height: 42px;
+  background: #E5EFF9;
+  color: var(--nh-navy-primary);
+  border: 1px solid #BFDBFE;
+  font-weight: 600;
+  font-size: 13.5px;
+  padding: 0 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nh-btn-verify:hover {
+  background: #DBEAFE;
+}
+
+/* ==========================================================================
+   6. VOICE DESCRIPTION RECORDING WIDGET (Real browser mic)
+   ========================================================================== */
+.nh-voice-widget {
+  background: #F8FAFC;
+  border: 1px solid var(--nh-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.nh-voice-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  color: var(--nh-text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nh-voice-btn:hover {
+  background: #F1F5F9;
+  border-color: #94A3B8;
+}
+
+.nh-voice-btn.recording {
+  background: #FEE2E2;
+  border-color: #FCA5A5;
+  color: #DC2626;
+  animation: pulse-border 1.5s infinite;
+}
+
+@keyframes pulse-border {
+  0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(220, 38, 38, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+.nh-voice-status {
+  font-size: 12.5px;
+  color: var(--nh-text-muted);
+}
+
+.nh-voice-waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 20px;
+}
+
+.nh-wave-bar {
+  width: 3px;
+  height: 8px;
+  background-color: #94A3B8;
+  border-radius: 2px;
+  transition: height 0.1s ease;
+}
+
+.nh-voice-btn.recording ~ .nh-voice-waveform .nh-wave-bar {
+  background-color: #DC2626;
+  animation: wave-bounce 0.6s infinite ease-in-out alternate;
+}
+
+.nh-wave-bar:nth-child(2) { animation-delay: 0.1s; }
+.nh-wave-bar:nth-child(3) { animation-delay: 0.2s; }
+.nh-wave-bar:nth-child(4) { animation-delay: 0.3s; }
+.nh-wave-bar:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes wave-bounce {
+  0% { height: 4px; }
+  100% { height: 18px; }
+}
+
+/* ==========================================================================
+   7. EMBEDDED SAATHI IMPACT ASSESSMENT (Inside Step 4)
+   ========================================================================== */
+.saathi-impact-box {
+  background: #F8FAFC;
+  border: 1.5px solid #BFDBFE;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 28px 0 16px 0;
+}
+
+.saathi-impact-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.saathi-title-group h3 {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--nh-navy-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.saathi-title-group p {
+  font-size: 13px;
+  color: #475569;
+  margin-top: 4px;
+}
+
+.saathi-badge-tag {
+  background: #E0E7FF;
+  color: #3730A3;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.saathi-questions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.saathi-q-item {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 14px 18px;
+}
+
+.saathi-q-text {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1E293B;
+  margin-bottom: 10px;
+}
+
+.saathi-options-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.saathi-opt-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #334155;
+  cursor: pointer;
+}
+
+.saathi-opt-label input {
+  accent-color: var(--nh-navy-primary);
+  cursor: pointer;
+}
+
+.saathi-emergency-check {
+  margin-top: 14px;
+  background: #FEF2F2;
+  border: 1px solid #F87171;
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #991B1B;
+  cursor: pointer;
+}
+
+.saathi-emergency-check input {
+  width: 16px;
+  height: 16px;
+  accent-color: #DC2626;
+  cursor: pointer;
+}
+
+/* LINKED SERVICES PREVIEW */
+.saathi-linked-services {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px dashed #CBD5E1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.saathi-service-pill {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #1E293B;
+}
+
+.saathi-service-pill strong {
+  color: var(--nh-navy-primary);
+}
+
+/* ==========================================================================
+   8. ACTION BUTTON BAR (Back & Continue / Submit)
+   ========================================================================== */
+.nh-btn-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--nh-border);
+}
+
+.nh-btn-back {
+  background: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.nh-btn-back:hover {
+  background: #F3F4F6;
+  border-color: #9CA3AF;
+}
+
+.nh-btn-continue {
+  background: var(--nh-navy-primary);
+  border: 1px solid var(--nh-navy-primary);
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  margin-left: auto;
+}
+
+.nh-btn-continue:hover {
+  background: var(--nh-navy-hover);
+}
+
+.nh-btn-continue svg,
+.nh-btn-back svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ==========================================================================
+   9. UX4G FOOTER (Replicated 1:1 from nhapoa.dosje.gov.in)
+   ========================================================================== */
+.nh-footer {
+  background: var(--nh-navy-dark);
+  color: #FFFFFF;
+  font-size: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+  width: 100%;
+}
+
+.nh-footer-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.nh-footer-copy {
+  color: #D1D5DB;
+  font-weight: 400;
+}
+
+.nh-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nh-footer-links a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nh-footer-links a:hover {
+  color: #9CBFE3;
+  text-decoration: underline;
+}
+
+.nh-footer-divider {
+  width: 1px;
+  height: 14px;
+  background: #9CBFE3;
+}
+
+/* ==========================================================================
+   10. SAMAJIK SAHAYAK (Official Govt Floating Chatbot Icon - Bottom Right)
+   ========================================================================== */
+.nh-samajik-bot {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(0, 51, 102, 0.2);
+  border: 2px solid #E2E8F0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.nh-samajik-bot:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 20px rgba(0, 51, 102, 0.25);
+}
+
+.nh-samajik-bot svg {
+  width: 34px;
+  height: 34px;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SAATHI — Operator Dashboard</title>
+<link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-mark">S</div>
+        <div>
+          <div class="brand-name">SAATHI</div>
+          <div class="brand-sub">Operator queue</div>
+        </div>
+      </div>
+      <div class="queue-summary" id="queueSummary"></div>
+      <div class="queue-list" id="queueList" role="list" aria-label="Case queue, sorted by priority"></div>
+    </aside>
+
+    <main class="main">
+      <header class="main-header">
+        <div>
+          <div class="case-id" id="caseId">—</div>
+          <div class="case-meta" id="caseMeta">—</div>
+        </div>
+        <div class="header-right">
+          <span class="confidence-pill" id="overallConfidence">—</span>
+        </div>
+      </header>
+
+      <div id="safetyBanner" class="safety-banner" hidden>
+        <div class="safety-banner-icon">&#9888;</div>
+        <div>
+          <div class="safety-banner-title">Safety Flag active — immediate human review required</div>
+          <div class="safety-banner-detail" id="safetyBannerDetail"></div>
+        </div>
+      </div>
+
+      <section class="score-row">
+        <div class="score-card">
+          <div class="score-card-label">Priority Score</div>
+          <div class="score-gauge-wrap">
+            <svg viewBox="0 0 140 80" class="score-gauge">
+              <path d="M10,75 A60,60 0 0 1 130,75" class="gauge-track" />
+              <path d="M10,75 A60,60 0 0 1 130,75" class="gauge-fill" id="gaugeFill" />
+            </svg>
+            <div class="score-number" id="scoreNumber">—</div>
+          </div>
+          <div class="score-card-note">out of 100 · prototype prioritisation signal, not a clinical score</div>
+        </div>
+        <div class="level-card">
+          <div class="score-card-label">Priority Level</div>
+          <div class="level-badge" id="levelBadge">—</div>
+          <div class="score-card-label" style="margin-top:14px;">Suggested next action</div>
+          <div class="suggested-action" id="suggestedAction">—</div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="panel-title">Evidence</h2>
+        <div class="evidence-grid" id="evidenceGrid"></div>
+      </section>
+
+      <section class="panel">
+        <h2 class="panel-title">Timeline</h2>
+        <ol class="timeline" id="timeline"></ol>
+      </section>
+
+      <section class="panel" id="copilotPanel">
+        <h2 class="panel-title">Operator Co-Pilot <span class="panel-title-note">— editable, pulled from a reviewed template library</span></h2>
+        <div class="copilot-list" id="copilotList"></div>
+      </section>
+
+      <section class="panel">
+        <h2 class="panel-title">Decision</h2>
+        <div class="decision-row">
+          <div class="decision-field">
+            <label for="referralSelect">Referral / action</label>
+            <select id="referralSelect">
+              <option value="continue">Continue normal grievance process</option>
+              <option value="counselling">Counselling referral</option>
+              <option value="legal">Legal aid referral</option>
+              <option value="medical">Medical support referral</option>
+              <option value="emergency">Emergency escalation</option>
+            </select>
+          </div>
+          <div class="decision-field">
+            <label for="overrideSelect">Override priority level (optional)</label>
+            <select id="overrideSelect">
+              <option value="">No override — keep system level</option>
+              <option value="Low">Low</option>
+              <option value="Moderate">Moderate</option>
+              <option value="High">High</option>
+              <option value="Urgent">Urgent</option>
+            </select>
+          </div>
+        </div>
+        <div class="decision-field" style="margin-top:10px;">
+          <label for="reasonInput">Reason (required if overriding)</label>
+          <input id="reasonInput" type="text" placeholder="e.g. caller's tone and phrasing suggest higher urgency than text alone captured" />
+        </div>
+        <button class="save-btn" id="saveDecisionBtn">Record decision</button>
+      </section>
+
+      <section class="panel">
+        <h2 class="panel-title">Audit log <span class="panel-title-note">— this session</span></h2>
+        <ul class="audit-log" id="auditLog">
+          <li class="audit-empty">No actions recorded yet this session.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="mock-data.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

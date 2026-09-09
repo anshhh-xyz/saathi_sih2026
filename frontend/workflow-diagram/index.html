@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SAATHI — How a Case Flows Through the System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="diagram.css" />
+<link rel="stylesheet" href="call.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="page-header">
+      <div>
+        <div class="eyebrow">SAATHI · System Architecture</div>
+        <h1>How a case actually moves through the system</h1>
+        <p class="lede">
+          Text Analysis and Acoustic Analysis run at the same time on the same interaction. The Safety
+          Engine runs independently of both — reading the transcript they produce, plus a few direct
+          safety questions — and can send a case straight to a human without waiting for either score.
+        </p>
+      </div>
+    </header>
+
+    <div class="view-tabs" role="tablist">
+      <button class="view-tab active" id="tabSystem" role="tab" aria-selected="true">System view</button>
+      <button class="view-tab" id="tabCall" role="tab" aria-selected="false">Call view</button>
+    </div>
+
+    <section id="viewSystem" class="view-system">
+
+    <div class="controls">
+      <button class="run-btn run-btn-calm" id="runCalm">
+        <span class="run-btn-dot dot-calm"></span> Run: calm complaint
+      </button>
+      <button class="run-btn run-btn-danger" id="runDanger">
+        <span class="run-btn-dot dot-danger"></span> Run: danger statement / silent SOS
+      </button>
+      <button class="reset-btn" id="resetBtn">Reset</button>
+    </div>
+
+    <div class="stage-wrap" id="stageWrap">
+      <div class="stage" id="stage">
+        <svg id="edgeSvg" viewBox="0 0 1180 940" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+
+        <div class="node node-lg" id="n-caller" style="left:390px; top:16px;">
+          <div class="node-label">Person reaching out</div>
+          <div class="node-sub">Victim / complainant</div>
+        </div>
+
+        <div class="node node-lg" id="n-channel" style="left:390px; top:112px;">
+          <div class="node-label">14566 call · Portal · Chat · IVRS</div>
+          <div class="node-sub">Existing NHAA channels, unchanged</div>
+        </div>
+
+        <div class="node node-lg" id="n-intake" style="left:390px; top:208px;">
+          <div class="node-label">Interaction captured</div>
+          <div class="node-sub">Audio recorded, plus a few direct safety questions — how are you feeling, are you safe, can you speak</div>
+        </div>
+
+        <div class="node node-col node-safety" id="n-safety" style="left:36px; top:344px;">
+          <div class="node-label">Safety Engine</div>
+          <div class="node-sub">Independent · continuous · checks the safety answers and the transcript for danger, coercion, or self-harm/suicide risk</div>
+        </div>
+
+        <div class="node node-col node-text" id="n-text" style="left:420px; top:344px;">
+          <div class="node-label">Text Analysis</div>
+          <div class="node-sub">Speech-to-text, then scanned for distress language → Text Distress Score</div>
+        </div>
+
+        <div class="node node-col node-acoustic" id="n-acoustic" style="left:804px; top:344px;">
+          <div class="node-label">Acoustic Analysis</div>
+          <div class="node-sub">Runs on the original audio at the same time — pitch, pace, pauses → Acoustic Indicator Score</div>
+        </div>
+
+        <div class="node node-col node-urgent" id="n-review" style="left:36px; top:492px;">
+          <div class="node-label">Immediate Human Review</div>
+          <div class="node-sub">Reached only on a Critical Flag — scoring is skipped, not just delayed</div>
+        </div>
+
+        <div class="node node-wide node-fusion" id="n-fusion" style="left:520px; top:492px;">
+          <div class="node-label">Confidence-Aware Fusion</div>
+          <div class="node-sub">Text Score + Acoustic Score + safety context, re-weighted for whatever's actually available</div>
+        </div>
+
+        <div class="node node-wide node-score" id="n-score" style="left:520px; top:604px;">
+          <div class="node-label">Priority Score + Confidence Level</div>
+          <div class="node-sub">Low · Moderate · High · Urgent — shown to the operator as two numbers, never one</div>
+        </div>
+
+        <div class="node node-lg" id="n-operator" style="left:390px; top:730px;">
+          <div class="node-label">Operator Dashboard</div>
+          <div class="node-sub">Both paths land here — but never as one merged signal</div>
+          <div class="arrival-badges">
+            <span class="arrival-badge badge-safety" id="badge-safety">
+              <span class="badge-dot"></span>Safety Flag path
+            </span>
+            <span class="arrival-badge badge-score" id="badge-score">
+              <span class="badge-dot"></span>Priority Score path
+            </span>
+          </div>
+        </div>
+
+        <div class="node node-lg" id="n-outcome" style="left:390px; top:830px;">
+          <div class="node-label">Support · Referral · Escalation</div>
+          <div class="node-sub">Continues into the existing NHAA grievance workflow</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caption-bar" id="captionBar">
+      <span class="caption-marker" id="captionMarker"></span>
+      <span id="captionText">Choose a scenario above to see how a case moves through SAATHI.</span>
+    </div>
+
+    <div class="legend">
+      <div><span class="legend-swatch swatch-calm"></span> Normal priority path</div>
+      <div><span class="legend-swatch swatch-danger"></span> Safety bypass — scoring is skipped, not delayed</div>
+      <div><span class="legend-swatch swatch-idle"></span> Not on the active path this run</div>
+    </div>
+
+    </section>
+
+    <section id="viewCall" class="view-call" hidden>
+
+      <div class="controls">
+        <button class="run-btn run-btn-calm" id="callRunCalm">
+          <span class="run-btn-dot dot-calm"></span> Run: calm complaint
+        </button>
+        <button class="run-btn run-btn-moderate" id="callRunModerate">
+          <span class="run-btn-dot dot-moderate"></span> Run: moderate concern
+        </button>
+        <button class="run-btn run-btn-danger" id="callRunDanger">
+          <span class="run-btn-dot dot-danger"></span> Run: danger statement / silent SOS
+        </button>
+        <button class="reset-btn" id="callResetBtn">Reset</button>
+      </div>
+
+      <div class="call-grid">
+        <div class="phone-panel">
+          <div class="phone-topbar">
+            <span class="phone-number">14566</span>
+            <span class="phone-status" id="phoneStatus"><span class="phone-status-dot" id="phoneStatusDot"></span>Not connected</span>
+          </div>
+          <div class="phone-wave" id="phoneWave" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="transcript-feed" id="transcriptFeed">
+            <p class="transcript-empty" id="transcriptEmpty">Choose a scenario to hear how the call unfolds for the person on the line.</p>
+          </div>
+          <div class="phone-timer" id="phoneTimer">00:00</div>
+        </div>
+
+        <div class="backend-panel">
+          <div class="backend-title">What SAATHI is doing, in parallel</div>
+
+          <div class="status-chip" id="chipText">
+            <span class="chip-dot"></span>
+            <span class="chip-label">Text Analysis</span>
+            <span class="chip-state">idle</span>
+          </div>
+          <div class="status-chip" id="chipAcoustic">
+            <span class="chip-dot"></span>
+            <span class="chip-label">Acoustic Analysis</span>
+            <span class="chip-state">idle</span>
+          </div>
+          <div class="status-chip" id="chipSafety">
+            <span class="chip-dot"></span>
+            <span class="chip-label">Safety Engine</span>
+            <span class="chip-state">idle</span>
+          </div>
+
+          <div class="readout-box" id="readoutBox">
+            <p class="readout-empty" id="readoutEmpty">Scores appear here once the call starts.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="operator-strip" id="operatorStrip">
+        <p class="operator-strip-empty" id="operatorEmpty">Operator dashboard — waiting for a case to arrive.</p>
+      </div>
+
+      <div class="caption-bar" id="callCaptionBar">
+        <span class="caption-marker" id="callCaptionMarker"></span>
+        <span id="callCaptionText">Choose a scenario above to hear how a call actually unfolds for the person on the line.</span>
+      </div>
+
+    </section>
+
+  </div>
+
+  <script src="diagram.js"></script>
+  <script src="call.js"></script>
+  <script src="view-tabs.js"></script>
+</body>
+</html>
