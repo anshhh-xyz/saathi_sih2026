@@ -74,17 +74,6 @@ The **National Helpline Against Atrocities (14566)** is a nationwide grievance i
 
 ```
 ├── README.md                           # Main project documentation & overview
-├── push_to_github.py                   # Automated push script with SSL verification
-├── docs/                               # Complete project documents from Google Drive
-│   ├── SIH_STRUCTURE.docx              # SIH pitching & defense structure
-│   ├── architecture_and_workflow.docx  # System design & triage workflow specification
-│   ├── current_workflow_and_its_problem.docx # Problem statement deep-dive
-│   ├── deployment_brief.docx           # Web & 14566 telephony deployment architecture
-│   ├── improvements_scopes.docx        # Prioritized technical roadmap
-│   ├── neuronex_SIH_26093.pptx         # Official SIH 2026 Presentation Slides
-│   ├── priors_and_questions_updated.docx # 300+ line judge Q&A preparation
-│   ├── ques_brief.docx                 # Quick revision sheet (Top 15 judge answers)
-│   └── techstack_updated.docx          # Model selection rationale & benchmarks
 └── frontend/                           # Client interfaces & applications
     ├── index.html                      # NHAA / SAMBAL Portal Homepage
     ├── register-grievance.html         # Official 5-step grievance registration + SAATHI screening
