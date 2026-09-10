@@ -96,16 +96,12 @@ The **National Helpline Against Atrocities (14566)** is a nationwide grievance i
     │   ├── indian-flag.svg             # National Flag of India
     │   ├── emblem-header.svg           # State Emblem of India (Ashoka Lion)
     │   ├── samavesh-logo.svg           # Official SAMAVESH scheme emblem
-    │   ├── sambal-logo.svg             # SAMBAL (NHAA 2.0) emblem
-    │   └── icons/                      # 26 official UX4G vector navigation & form icons
+    │   └── sambal-logo.svg             # SAMBAL (NHAA 2.0) emblem
     ├── operator-dashboard/             # Internal Officer Triage Tool
     │   ├── index.html                  # Priority queue, safety alert banner, evidence panels
     │   ├── dashboard.js                # Triage queue manager & live docket sync
-    │   └── dashboard.css               # Government officer dashboard styling
-    ├── victim-widget/                  # Embeddable script-tag citizen widget
-    │   ├── demo.html                   # Interactive demo with microphone audio recording
-    │   ├── saathi-widget.js            # Standalone widget logic
-    │   └── saathi-widget.css           # Floating panel design
+    │   ├── dashboard.css               # Government officer dashboard styling
+    │   └── mock-data.js                # Realistic sample cases with varying confidence & channels
     └── workflow-diagram/               # Interactive comparison of NHAA current vs. SAATHI
         └── index.html                  # Side-by-side interactive flow visualizer
 ```

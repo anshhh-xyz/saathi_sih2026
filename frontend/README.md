@@ -1,73 +1,53 @@
-# SAATHI — Frontend Files
+# SAATHI — Frontend Architecture & Portal Modules
 
-Two independent front ends, matching the stack and design decisions in
-`techstack.docx` and `architecture_and_workflow.docx`. Both are plain
-HTML/CSS/JS — no build step, no framework dependency — so they can be opened
-directly or dropped into an existing site without needing a bundler.
+Government of India (DOSJE / NHAA) replicated citizen interface and internal operator intelligence suite. Plain HTML5, CSS3 (UX4G standard), and modern JavaScript — zero build steps or heavyweight runtime dependencies required.
 
-## 1. `victim-widget/` — embeds into the existing NHAA site
+---
 
-This is the caller-facing SAATHI panel, built to be dropped into
-**dosje.gov.in** (or wherever NHAA's site actually lives) with two tags:
+## 1. Citizen Portal & Grievance Lifecycle
 
-```html
-<link rel="stylesheet" href="saathi-widget.css">
-<script src="saathi-widget.js"></script>
-<script>
-  SaathiWidget.init({
-    apiBase: "https://api.saathi.example.gov.in", // your real backend
-    defaultLang: "en"
-  });
-</script>
-```
+The public interface directly replicates the official National Helpline Against Atrocities (**`nhapoa.dosje.gov.in`**) user experience:
 
-It doesn't assume the host page runs React, or anything else — a script-tag
-embed is the realistic path onto a site your team doesn't control the stack
-of. `demo.html` is a mock-up of the NHAA page (colors, layout, and the
-existing floating chat icon reproduced approximately from the screenshots)
-so you can check placement and see it isn't fighting with the site's
-existing "Samajik Sahayak" widget in the opposite corner — open it directly
-in a browser to try the flow.
+- **`index.html`**: NHAA / SAMBAL Portal Homepage.
+- **`register-grievance.html`**: 5-step statutory grievance registration workflow:
+  1. *Grievance Registration*: Sector categorization, FIR status, and applicant role selection (*Informer, Victim, NGO*).
+  2. *Informer Details*: Contact particulars and residential details with statutory data protection.
+  3. *Victim Details*: Caste/Tribe category identification and jurisdictional police station mapping.
+  4. *Grievance Details & Embedded SAATHI Screening*:
+     - Incident narrative statement with **live microphone recording** (`MediaRecorder` waveform visualizer).
+     - **Embedded SAATHI Impact Screening**: 3 operational distress check-ins (sleep disruption, trauma intrusions, functional impairment) + active peril alert toggle.
+     - Auto-linkages to national helplines: **Tele-MANAS (`14416`)** & **DLSA Free Legal Aid (`15100`)**.
+  5. *Review & Submit*: Final case declaration, unique Docket ID generation (e.g., `NHAA/2026/09/84920`), and automatic synchronization to the Operator Dashboard.
+- **`register-rescue.html`**: Rapid emergency intake page directly wired to the **Critical Safety Engine Bypass**.
+- **`track-status.html`**: Real-time milestone tracker with continuous care access and 30-day statutory appeal notice.
+- **`saathi-service.js`**: Client-side triage scoring engine, multimodal distress calculation, and `localStorage` case docket synchronization.
 
-**What's real vs. what needs a backend:**
-- Consent → complaint text/voice → check-in → confirmation screen: fully
-  working client-side flow, including actual microphone recording via
-  `MediaRecorder`.
-- The "I need help right now" button and the quiet/silent-exit control:
-  both genuinely fire immediately and don't wait on anything else.
-- Every step that would reach the safety engine or the assessment pipeline
-  (`_sendToApi`) does a real `fetch()` to `apiBase` if one is configured; with
-  no backend configured it just logs to the console so the widget is still
-  fully demoable standalone.
+---
 
-## 2. `operator-dashboard/` — internal tool, not embedded publicly
+## 2. `operator-dashboard/` — Internal Officer Triage Tool
 
-The operator-facing screen described in the architecture doc — this is
-**not** meant to go on the public site; it's a separate internal tool for
-NHAA staff. Open `index.html` directly, or serve the folder statically.
+Operator-facing decision support screen for NHAA call center staff, Welfare Officers, and District Magistrates:
 
-- `mock-data.js` stands in for `GET /dashboard/queue` — four sample cases,
-  one with an active safety flag, one with a missing acoustic signal (text
-  channel), one on a basic-phone IVRS channel with almost nothing available.
-  Swap this file out for a real fetch once the API exists.
-- The safety banner, priority gauge, evidence panels (each with its own
-  confidence/availability state), timeline, Co-Pilot suggestions, override
-  control, and audit log are all live and interactive against the mock data.
-- `dashboard.js` has comments marking exactly which calls need to become
-  real `fetch()` calls to the API endpoints listed in the techstack doc
-  (`/cases/{id}/operator-action`, `/cases/{id}/referral`, etc.).
+- **`index.html`**: Operator interface layout.
+- **`dashboard.js`**: Interactive queue manager, safety alert handler, and live docket ingestion from citizen submissions.
+- **`dashboard.css`**: Professional government dashboard styling.
+- **`mock-data.js`**: Realistic sample cases across diverse channels and confidence levels.
 
-## Design notes
+---
 
-- The victim widget's palette is pulled directly from the NHAA site
-  screenshots (government blue, white cards, a restrained tricolor hairline)
-  so it reads as part of the site rather than a bolted-on third-party
-  chat tool.
-- The operator dashboard uses its own calmer navy/teal palette with
-  color-coded priority levels (teal → amber → orange → red) — it's an
-  internal tool, so it isn't constrained to match the public site.
-- Both respect `prefers-reduced-motion` and are keyboard-navigable.
-- Both were checked with actual rendering (not just written blind) —
-  screenshots were taken and one real bug (the safety banner not hiding,
-  a CSS specificity conflict between a `.class` display rule and the
-  native `[hidden]` attribute) was caught and fixed before delivery.
+## 3. `workflow-diagram/` — Architecture Flow Simulator
+
+Interactive evaluation visualizer demonstrating SAATHI's twin-path processing logic:
+
+- **`index.html`**: Visualizer container.
+- **`diagram.js` & `call.js`**: Step-by-step token animations comparing standard multimodal distress analysis against immediate deterministic safety bypass.
+
+---
+
+## 4. `assets/` — Production UX4G Design Assets
+
+- **`nhapoa-layout.css`**: UX4G design tokens, typography, grid layouts, responsive breakpoints, and official color scheme.
+- **`indian-flag.svg`**: National Flag of India.
+- **`emblem-header.svg`**: State Emblem of India (Ashoka Lion Capital).
+- **`samavesh-logo.svg`**: SAMAVESH initiative logo.
+- **`sambal-logo.svg`**: SAMBAL (NHAA 2.0) portal logo.
