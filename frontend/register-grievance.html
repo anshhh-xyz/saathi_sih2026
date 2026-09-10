@@ -959,10 +959,31 @@
           gMediaRecorder = new MediaRecorder(stream);
           gAudioChunks = [];
           gMediaRecorder.ondataavailable = e => gAudioChunks.push(e.data);
-          gMediaRecorder.onstop = () => {
+          gMediaRecorder.onstop = async () => {
             const desc = document.getElementById('incidentDescription');
-            desc.value += "\n[Audio Note Recorded: Complainant provided voice statement in Hindi/English - acoustic prosody analyzed for tremor and urgency markers.]";
-            status.textContent = 'Recording attached to dossier (Audio acoustic features captured)';
+            status.textContent = 'Transcribing voice via AI4Bharat IndicConformer...';
+
+            const audioBlob = new Blob(gAudioChunks, { type: 'audio/webm' });
+            const formData = new FormData();
+            formData.append('file', audioBlob, 'voice_recording.webm');
+
+            try {
+              const response = await fetch('http://localhost:8000/api/asr/transcribe?lang=hi', {
+                method: 'POST',
+                body: formData
+              });
+              const data = await response.json();
+              if (data && data.transcription) {
+                desc.value = (desc.value ? desc.value + ' ' : '') + data.transcription;
+                status.textContent = 'Voice transcribed successfully (Local IndicConformer)';
+              } else {
+                status.textContent = 'Transcription complete (no speech detected).';
+              }
+            } catch (err) {
+              console.warn('ASR API offline, keeping audio note:', err);
+              desc.value += "\n[Audio Note Attached: Complainant voice statement captured and linked to docket.]";
+              status.textContent = 'Recording attached to dossier (Backend ASR offline)';
+            }
           };
           gMediaRecorder.start();
           gIsRecording = true;
