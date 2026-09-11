@@ -9,8 +9,13 @@ import uvicorn
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from app.models.asr import transcribe_audio
+from app.api.indic_bert import router as indic_bert_router
 
-app = FastAPI(title="Saathi ASR Service")
+app = FastAPI(
+    title="SAATHI AI Multimodal Triage API",
+    description="Real-Time Stress, Emotion & Atrocity Triage Layer for NHAA (14566), MoSJE",
+    version="1.0.0"
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -19,6 +24,19 @@ app.add_middleware(
     allow_headers=["*"],
     allow_credentials=True,
 )
+
+app.include_router(indic_bert_router)
+
+@app.get("/api/health")
+async def health_check():
+    return {
+        "status": "healthy",
+        "service": "SAATHI AI Triage Layer",
+        "modules": {
+            "asr": "ai4bharat/indic-conformer-600m-multilingual",
+            "indic_bert": "ai4bharat/IndicBERT-v3-270M (Fine-Tuned on PoA Dataset)"
+        }
+    }
 
 @app.post("/api/asr/transcribe")
 async def transcribe_endpoint(file: UploadFile = File(...), lang: str = "hi"):

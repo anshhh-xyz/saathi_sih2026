@@ -400,6 +400,23 @@
       return null;
     },
 
+    assessTextWithIndicBERT: async function (text, threshold) {
+      if (!text || !text.trim()) return null;
+      try {
+        var response = await fetch("http://localhost:8000/api/text/assess", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: text.trim(), threshold: threshold || 0.40 })
+        });
+        if (response.ok) {
+          return await response.json();
+        }
+      } catch (err) {
+        console.warn("IndicBERT API offline:", err);
+      }
+      return null;
+    },
+
     _getDaysSinceIncident: function (dateStr) {
       if (!dateStr) return 0;
       var d = new Date(dateStr);
@@ -409,6 +426,7 @@
       return Math.max(0, Math.floor(diffMs / (1000 * 60 * 60 * 24)));
     }
   };
+
 
   window.SaathiService = SaathiService;
 })(window);

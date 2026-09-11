@@ -5,6 +5,21 @@ __pycache__/
 *.py[cod]
 *$py.class
 backend/weights/
+.DS_Store
+
+# Large Model Weights & Checkpoints
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+backend/app/models/indic_bert/saved_model/*.safetensors
+backend/app/models/indic_bert/saved_model/checkpoints/
+backend/app/models/indic_bert/processed_data/
+
+# Archives & Audio
+*.zip
+*.tar.gz
 *.wav
 *.flac
 *.mp3
@@ -12,4 +27,3 @@ backend/weights/
 *.webm
 *.ogg
 *.m4a
-.DS_Store

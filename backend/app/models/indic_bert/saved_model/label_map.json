@@ -1,0 +1,41 @@
+{
+  "labels": [
+    "fear",
+    "intimidation",
+    "panic",
+    "hopelessness",
+    "anger",
+    "sadness",
+    "immediate_danger",
+    "help_seeking",
+    "others"
+  ],
+  "id2label": {
+    "0": "fear",
+    "1": "intimidation",
+    "2": "panic",
+    "3": "hopelessness",
+    "4": "anger",
+    "5": "sadness",
+    "6": "immediate_danger",
+    "7": "help_seeking",
+    "8": "others"
+  },
+  "label2id": {
+    "fear": 0,
+    "intimidation": 1,
+    "panic": 2,
+    "hopelessness": 3,
+    "anger": 4,
+    "sadness": 5,
+    "immediate_danger": 6,
+    "help_seeking": 7,
+    "others": 8
+  },
+  "base_model": "ai4bharat/IndicBERT-v3-270M",
+  "max_length": 128,
+  "train_samples": 2013,
+  "val_samples": 300,
+  "speech_augmented": true,
+  "augmented_samples_added": 313
+}
