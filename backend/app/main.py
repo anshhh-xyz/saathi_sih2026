@@ -10,6 +10,9 @@ from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from app.models.asr import transcribe_audio
 from app.api.indic_bert import router as indic_bert_router
+from app.api.priority import router as priority_router
+from app.api.questions import router as questions_router
+from app.api.recommendations import router as recommendations_router
 
 app = FastAPI(
     title="SAATHI AI Multimodal Triage API",
@@ -26,6 +29,9 @@ app.add_middleware(
 )
 
 app.include_router(indic_bert_router)
+app.include_router(priority_router)
+app.include_router(questions_router)
+app.include_router(recommendations_router)
 
 @app.get("/api/health")
 async def health_check():
@@ -34,7 +40,9 @@ async def health_check():
         "service": "SAATHI AI Triage Layer",
         "modules": {
             "asr": "ai4bharat/indic-conformer-600m-multilingual",
-            "indic_bert": "ai4bharat/IndicBERT-v3-270M (Fine-Tuned on PoA Dataset)"
+            "indic_bert": "ai4bharat/IndicBERT-v3-270M (Fine-Tuned on PoA Dataset)",
+            "priority_fusion": "Confidence-Aware Multi-Factor Priority Engine",
+            "dynamic_questions": "Groq AI Case-Specific Impact Generator"
         }
     }
 

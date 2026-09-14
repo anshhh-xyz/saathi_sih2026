@@ -59,6 +59,22 @@
         </div>
       </section>
 
+      <section class="panel" id="complainantDossierPanel">
+        <div class="panel-header-flex">
+          <h2 class="panel-title" style="margin-bottom:0;">Complainant & Incident Dossier <span class="panel-title-note">— Verified NHAA Intake & Geolocation</span></h2>
+          <span id="dossierRoleBadge" class="formula-badge">Victim (Direct Intake)</span>
+        </div>
+        <div class="dossier-grid" id="dossierGrid"></div>
+      </section>
+
+      <section class="panel" id="priorityBreakdownPanel">
+        <div class="panel-header-flex">
+          <h2 class="panel-title" style="margin-bottom:0;">Priority Calculation Breakdown <span class="panel-title-note">— Confidence-Aware 4-Pillar Multimodal Fusion</span></h2>
+          <span class="formula-badge">Score = Σ (Effective Weight × Modality Score)</span>
+        </div>
+        <div id="priorityBreakdownContainer" style="margin-top:14px;"></div>
+      </section>
+
       <section class="panel">
         <h2 class="panel-title">Evidence</h2>
         <div class="evidence-grid" id="evidenceGrid"></div>
@@ -70,8 +86,30 @@
       </section>
 
       <section class="panel" id="copilotPanel">
-        <h2 class="panel-title">Operator Co-Pilot <span class="panel-title-note">— editable, pulled from a reviewed template library</span></h2>
-        <div class="copilot-list" id="copilotList"></div>
+        <div class="copilot-container">
+          <div class="copilot-header">
+            <div class="copilot-header-left">
+              <div class="copilot-avatar">&#9889;</div>
+              <div>
+                <div class="copilot-title-text">SAATHI Operator Copilot · Legal & Triage Decision Assistant</div>
+                <div style="font-size: 11px; color: #BFDBFE;">PoA Act Statutory Advisor · Prototype AI Helper</div>
+              </div>
+            </div>
+            <div class="copilot-status-dot" id="copilotStatus">Active · Synced to Case</div>
+          </div>
+          <div class="copilot-chat-body" id="copilotChatBody"></div>
+          <div class="copilot-quick-chips" id="copilotQuickChips"></div>
+          <div class="copilot-input-bar">
+            <input type="text" id="copilotInput" placeholder="Ask Copilot (e.g. 'draft DM memo', 'what penal sections apply?', 'compensation under Rule 12(4)')..." onkeydown="if(event.key==='Enter') sendCopilotMsg()" />
+            <button type="button" class="copilot-send-btn" onclick="sendCopilotMsg()">
+              <span>Send</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
       </section>
 
       <section class="panel">
@@ -116,6 +154,7 @@
 
   <div class="toast" id="toast" hidden></div>
 
+  <script src="../saathi-service.js"></script>
   <script src="mock-data.js"></script>
   <script src="dashboard.js"></script>
 </body>
